@@ -1,0 +1,25 @@
+enum userRole {
+    TRAVELER
+    GUIDE
+    ADMIN
+}
+
+enum BookingStatus {
+    PENDING
+    CONFIRMED
+    COMPLETED
+    CANCELLED
+}
+
+enum PaymentStatus {
+    PAID
+    REFUNDED
+    FAILED
+}
+
+enum PaymentMethod {
+    CARD
+    CASH
+    BKASH
+    NAGAD
+}

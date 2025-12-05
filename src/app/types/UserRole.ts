@@ -1,0 +1,1 @@
+export type UserRole = 'TRAVELER' | 'GUIDE' | 'ADMIN';

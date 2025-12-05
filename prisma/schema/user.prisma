@@ -1,0 +1,30 @@
+model User {
+    id               String        @id @default(uuid())
+    name             String
+    email            String
+    phone            String
+    password         String
+    role             userRole      @default(TRAVELER)
+    profilePhoto     String?
+    bio              String?
+    language         String[]
+    guideProfile     GuideProfile?
+    createdAt        DateTime      @default(now())
+    updateAt         DateTime      @updatedAt
+    travelerBookings Booking[]     @relation("TravelerBookings")
+    guideBookings    Booking[]     @relation("GuideBookings")
+    reviews          Review[]
+}
+
+model GuideProfile {
+    id              String      @id @default(uuid())
+    userId          String      @unique
+    location        String
+    pricePerHour    Int
+    isAvailable     Boolean     @default(true)
+    experienceYears Int?
+    areas           GuideArea[]
+    user            User        @relation(fields: [userId], references: [id])
+    reviews         Review[]
+}
+
