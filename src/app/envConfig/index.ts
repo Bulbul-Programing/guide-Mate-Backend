@@ -1,31 +1,59 @@
-import dotenv from 'dotenv';
-import path from 'path';
 
-dotenv.config({ path: path.join(process.cwd(), '.env') });
-
-export  const envVar = {
-    node_env: process.env.NODE_ENV,
-    port: process.env.PORT,
-    database_url: process.env.DATABASE_URL,
-    cloudinary: {
-        api_secret: process.env.CLOUDINARY_API_SECRET,
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY
-    },
-    openRouterApiKey: process.env.OPENROUTER_API_KEY,
-    stripeSecretKey: process.env.STRIPE_SECRET_KEY,
-    emailSender: {
-        email: process.env.EMAIL,
-        app_pass: process.env.APP_PASS
-    },
-    jwt: {
-        jwt_secret: process.env.JWT_SECRET,
-        expires_in: process.env.EXPIRES_IN,
-        refresh_token_secret: process.env.REFRESH_TOKEN_SECRET,
-        refresh_token_expires_in: process.env.REFRESH_TOKEN_EXPIRES_IN,
-        reset_pass_secret: process.env.RESET_PASS_TOKEN,
-        reset_pass_token_expires_in: process.env.RESET_PASS_TOKEN_EXPIRES_IN
-    },
-    salt_round: process.env.SALT_ROUND,
-    reset_pass_link: process.env.RESET_PASS_LINK
+interface EnvConfig {
+    NODE_ENV: string,
+    PORT: string,
+    BCRYPT_ROUNDS: string,
+    GOOGLE_CLIENT_SECRET: string,
+    GOOGLE_CLIENT_ID: string,
+    GOOGLE_CALLBACK_URL: string,
+    ACCESS_TOKEN_SECRETE: string,
+    REFRESH_TOKEN_SECRET: string,
+    ACCESS_TOKEN_EXPIRE: string
+    REFRESH_TOKEN_EXPIRE: string
+    DATABASE_URL: string,
+    EXPRESS_SESSION_SECRET: string
+    FRONTEND_URL: string
 }
+
+const localEnvVariables = (): EnvConfig => {
+    const requiredEnvVariables: string[] = [
+        'NODE_ENV',
+        'PORT',
+        'BCRYPT_ROUNDS',
+        'GOOGLE_CLIENT_SECRET',
+        'GOOGLE_CLIENT_ID',
+        'GOOGLE_CALLBACK_URL',
+        'ACCESS_TOKEN_SECRETE',
+        'REFRESH_TOKEN_SECRET',
+        'ACCESS_TOKEN_EXPIRE',
+        'REFRESH_TOKEN_EXPIRE',
+        'DATABASE_URL',
+        'EXPRESS_SESSION_SECRET',
+        'FRONTEND_URL'
+    ]
+
+    requiredEnvVariables.forEach(envVar => {
+        if (!process.env[envVar]) {
+            throw new Error(`Missing require environment variable ${envVar}`)
+        }
+    })
+
+    return {
+        NODE_ENV: process.env.NODE_ENV as string,
+        PORT: process.env.PORT as string,
+        BCRYPT_ROUNDS: process.env.BCRYPT_ROUNDS as string,
+        GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET as string,
+        GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID as string,
+        GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
+        ACCESS_TOKEN_SECRETE: process.env.ACCESS_TOKEN_SECRETE as string,
+        REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET as string,
+        ACCESS_TOKEN_EXPIRE: process.env.ACCESS_TOKEN_EXPIRE as string,
+        REFRESH_TOKEN_EXPIRE: process.env.REFRESH_TOKEN_EXPIRE as string,
+        DATABASE_URL: process.env.DATABASE_URL as string,
+        EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET as string,
+        FRONTEND_URL: process.env.FRONTEND_URL as string,
+    }
+}
+
+export const envVars = localEnvVariables()
+

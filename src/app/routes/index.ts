@@ -1,5 +1,6 @@
 import express from 'express';
 import { userRoutes } from '../modules/user/user.route';
+import { authRoutes } from '../modules/auth/auth.router';
 
 type TModuleRoutes = {
     path: string,
@@ -11,6 +12,10 @@ const moduleRoutes: TModuleRoutes[] = [
     {
         path: '/user',
         route: userRoutes
+    },
+    {
+        path: '/auth',
+        route: authRoutes
     }
 ]
 moduleRoutes.forEach(route => router.use(route.path, route.route))

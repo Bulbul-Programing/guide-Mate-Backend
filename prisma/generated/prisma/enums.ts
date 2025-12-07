@@ -29,9 +29,10 @@ export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
 
 
 export const PaymentStatus = {
+  PENDING: 'PENDING',
   PAID: 'PAID',
-  REFUNDED: 'REFUNDED',
-  FAILED: 'FAILED'
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
 } as const
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
@@ -45,3 +46,15 @@ export const PaymentMethod = {
 } as const
 
 export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
+export const TourCategory = {
+  FOOD: 'FOOD',
+  HISTORY: 'HISTORY',
+  ADVENTURE: 'ADVENTURE',
+  PHOTOGRAPHY: 'PHOTOGRAPHY',
+  NIGHTLIFE: 'NIGHTLIFE',
+  CULTURE: 'CULTURE'
+} as const
+
+export type TourCategory = (typeof TourCategory)[keyof typeof TourCategory]

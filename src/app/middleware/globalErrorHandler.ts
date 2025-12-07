@@ -6,9 +6,9 @@ import type { NextFunction, Request, Response } from 'express';
 import { handlePrismaClientError } from '../error/handlePrismaClientError';
 
 import type { TErrorSource } from '../types/error.type';
-import { envVar } from '../envConfig';
 import { Prisma } from '@prisma/client';
 import handleDuplicateError from '../error/handleDuplicateError';
+import { envVars } from '../envConfig';
 
 const globalErrorHandler = (
   err: any,
@@ -36,7 +36,7 @@ const globalErrorHandler = (
       success: false,
       message,
       errorSources,
-      errorStack: envVar.node_env === 'development' ? err?.stack : null,
+      errorStack: envVars.NODE_ENV === 'development' ? err?.stack : null,
     });
   }
 
@@ -72,7 +72,7 @@ const globalErrorHandler = (
     success: false,
     message,
     errorSources,
-    errorStack: envVar.node_env === 'development' ? err?.stack : null,
+    errorStack: envVars.NODE_ENV === 'development' ? err?.stack : null,
   });
 };
 

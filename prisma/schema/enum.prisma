@@ -12,9 +12,10 @@ enum BookingStatus {
 }
 
 enum PaymentStatus {
+    PENDING
     PAID
-    REFUNDED
     FAILED
+    REFUNDED
 }
 
 enum PaymentMethod {
@@ -22,4 +23,13 @@ enum PaymentMethod {
     CASH
     BKASH
     NAGAD
+}
+
+enum TourCategory {
+    FOOD
+    HISTORY
+    ADVENTURE
+    PHOTOGRAPHY
+    NIGHTLIFE
+    CULTURE
 }

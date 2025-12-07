@@ -1,29 +1,30 @@
 model user {
-    id               String        @id @default(uuid())
-    name             String
-    email            String        @unique
-    phone            String
-    password         String
-    role             userRole      @default(TRAVELER)
-    profilePhoto     String?
-    bio              String?
-    language         String[]
-    guideProfile     guideProfile?
-    createdAt        DateTime      @default(now())
-    updateAt         DateTime      @updatedAt
-    travelerBookings Booking[]     @relation("TravelerBookings")
-    guideBookings    Booking[]     @relation("GuideBookings")
-    reviews          Review[]
+    id              String        @id @default(uuid())
+    name            String
+    email           String        @unique
+    phone           String
+    password        String
+    role            userRole      @default(TRAVELER)
+    profilePhoto    String?
+    bio             String?
+    language        String[]
+    isBlocked       Boolean       @default(false)
+    guideProfile    guideProfile?
+    createdAt       DateTime      @default(now())
+    updateAt        DateTime      @updatedAt
+    guideBookings   Booking[]     @relation("GuideBookings")
+    touristBookings Booking[]     @relation("TouristBookings")
+    reviews         Review[]
 }
 
 model guideProfile {
     id              String      @id @default(uuid())
     userId          String      @unique
     location        String
-    pricePerHour    Int
+    pricePerDay     Int
     isAvailable     Boolean     @default(true)
     experienceYears Int?        @default(0)
-    areas           GuideArea[]
+    guideSpots      GuideSpot[]
     user            user        @relation(fields: [userId], references: [id])
     reviews         Review[]
 }

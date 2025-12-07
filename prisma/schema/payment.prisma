@@ -1,11 +1,10 @@
 model Payment {
-    id        String        @id @default(uuid())
-    bookingId String        @unique
-    amount    Int
-    status    PaymentStatus @default(PAID)
-    method    PaymentMethod
-
-    booking Booking @relation(fields: [bookingId], references: [id])
-
-    createdAt DateTime @default(now())
+    id            String        @id @default(uuid())
+    bookingId     String        @unique
+    amount        Float
+    transactionId String
+    status        PaymentStatus
+    booking       Booking       @relation(fields: [bookingId], references: [id])
+    createdAt     DateTime      @default(now())
+    updateAt      DateTime      @updatedAt
 }

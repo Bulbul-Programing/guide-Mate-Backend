@@ -27,8 +27,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more GuideAreas
- * const guideAreas = await prisma.guideArea.findMany()
+ * // Fetch zero or more Bookings
+ * const bookings = await prisma.booking.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -38,10 +38,15 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model GuideArea
+ * Model Booking
  * 
  */
-export type GuideArea = Prisma.GuideAreaModel
+export type Booking = Prisma.BookingModel
+/**
+ * Model GuideSpot
+ * 
+ */
+export type GuideSpot = Prisma.GuideSpotModel
 /**
  * Model Payment
  * 
@@ -52,11 +57,6 @@ export type Payment = Prisma.PaymentModel
  * 
  */
 export type Review = Prisma.ReviewModel
-/**
- * Model Booking
- * 
- */
-export type Booking = Prisma.BookingModel
 /**
  * Model user
  * 

@@ -384,10 +384,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  GuideArea: 'GuideArea',
+  Booking: 'Booking',
+  GuideSpot: 'GuideSpot',
   Payment: 'Payment',
   Review: 'Review',
-  Booking: 'Booking',
   user: 'user',
   guideProfile: 'guideProfile'
 } as const
@@ -405,81 +405,155 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "guideArea" | "payment" | "review" | "booking" | "user" | "guideProfile"
+    modelProps: "booking" | "guideSpot" | "payment" | "review" | "user" | "guideProfile"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    GuideArea: {
-      payload: Prisma.$GuideAreaPayload<ExtArgs>
-      fields: Prisma.GuideAreaFieldRefs
+    Booking: {
+      payload: Prisma.$BookingPayload<ExtArgs>
+      fields: Prisma.BookingFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.GuideAreaFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload> | null
+          args: Prisma.BookingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.GuideAreaFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>
+          args: Prisma.BookingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
         }
         findFirst: {
-          args: Prisma.GuideAreaFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload> | null
+          args: Prisma.BookingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.GuideAreaFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>
+          args: Prisma.BookingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
         }
         findMany: {
-          args: Prisma.GuideAreaFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>[]
+          args: Prisma.BookingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[]
         }
         create: {
-          args: Prisma.GuideAreaCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>
+          args: Prisma.BookingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
         }
         createMany: {
-          args: Prisma.GuideAreaCreateManyArgs<ExtArgs>
+          args: Prisma.BookingCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.GuideAreaCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>[]
+          args: Prisma.BookingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[]
         }
         delete: {
-          args: Prisma.GuideAreaDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>
+          args: Prisma.BookingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
         }
         update: {
-          args: Prisma.GuideAreaUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>
+          args: Prisma.BookingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
         }
         deleteMany: {
-          args: Prisma.GuideAreaDeleteManyArgs<ExtArgs>
+          args: Prisma.BookingDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.GuideAreaUpdateManyArgs<ExtArgs>
+          args: Prisma.BookingUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.GuideAreaUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>[]
+          args: Prisma.BookingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[]
         }
         upsert: {
-          args: Prisma.GuideAreaUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideAreaPayload>
+          args: Prisma.BookingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
         }
         aggregate: {
-          args: Prisma.GuideAreaAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateGuideArea>
+          args: Prisma.BookingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBooking>
         }
         groupBy: {
-          args: Prisma.GuideAreaGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.GuideAreaGroupByOutputType>[]
+          args: Prisma.BookingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookingGroupByOutputType>[]
         }
         count: {
-          args: Prisma.GuideAreaCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.GuideAreaCountAggregateOutputType> | number
+          args: Prisma.BookingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookingCountAggregateOutputType> | number
+        }
+      }
+    }
+    GuideSpot: {
+      payload: Prisma.$GuideSpotPayload<ExtArgs>
+      fields: Prisma.GuideSpotFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GuideSpotFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GuideSpotFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>
+        }
+        findFirst: {
+          args: Prisma.GuideSpotFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GuideSpotFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>
+        }
+        findMany: {
+          args: Prisma.GuideSpotFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>[]
+        }
+        create: {
+          args: Prisma.GuideSpotCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>
+        }
+        createMany: {
+          args: Prisma.GuideSpotCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GuideSpotCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>[]
+        }
+        delete: {
+          args: Prisma.GuideSpotDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>
+        }
+        update: {
+          args: Prisma.GuideSpotUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>
+        }
+        deleteMany: {
+          args: Prisma.GuideSpotDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GuideSpotUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GuideSpotUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>[]
+        }
+        upsert: {
+          args: Prisma.GuideSpotUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuideSpotPayload>
+        }
+        aggregate: {
+          args: Prisma.GuideSpotAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGuideSpot>
+        }
+        groupBy: {
+          args: Prisma.GuideSpotGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuideSpotGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GuideSpotCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuideSpotCountAggregateOutputType> | number
         }
       }
     }
@@ -628,80 +702,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ReviewCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ReviewCountAggregateOutputType> | number
-        }
-      }
-    }
-    Booking: {
-      payload: Prisma.$BookingPayload<ExtArgs>
-      fields: Prisma.BookingFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.BookingFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.BookingFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
-        }
-        findFirst: {
-          args: Prisma.BookingFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.BookingFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
-        }
-        findMany: {
-          args: Prisma.BookingFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[]
-        }
-        create: {
-          args: Prisma.BookingCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
-        }
-        createMany: {
-          args: Prisma.BookingCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.BookingCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[]
-        }
-        delete: {
-          args: Prisma.BookingDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
-        }
-        update: {
-          args: Prisma.BookingUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
-        }
-        deleteMany: {
-          args: Prisma.BookingDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.BookingUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.BookingUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[]
-        }
-        upsert: {
-          args: Prisma.BookingUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>
-        }
-        aggregate: {
-          args: Prisma.BookingAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBooking>
-        }
-        groupBy: {
-          args: Prisma.BookingGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BookingGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.BookingCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BookingCountAggregateOutputType> | number
         }
       }
     }
@@ -892,46 +892,13 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const GuideAreaScalarFieldEnum = {
-  id: 'id',
-  guideId: 'guideId',
-  name: 'name',
-  description: 'description'
-} as const
-
-export type GuideAreaScalarFieldEnum = (typeof GuideAreaScalarFieldEnum)[keyof typeof GuideAreaScalarFieldEnum]
-
-
-export const PaymentScalarFieldEnum = {
-  id: 'id',
-  bookingId: 'bookingId',
-  amount: 'amount',
-  status: 'status',
-  method: 'method',
-  createdAt: 'createdAt'
-} as const
-
-export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
-
-
-export const ReviewScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  guideId: 'guideId',
-  rating: 'rating',
-  comment: 'comment',
-  createdAt: 'createdAt'
-} as const
-
-export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
-
-
 export const BookingScalarFieldEnum = {
   id: 'id',
-  travelerId: 'travelerId',
+  bookingId: 'bookingId',
+  touristId: 'touristId',
   guideId: 'guideId',
-  startTime: 'startTime',
-  endTime: 'endTime',
+  startDate: 'startDate',
+  endDate: 'endDate',
   totalPrice: 'totalPrice',
   status: 'status',
   createdAt: 'createdAt',
@@ -939,6 +906,55 @@ export const BookingScalarFieldEnum = {
 } as const
 
 export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
+
+
+export const GuideSpotScalarFieldEnum = {
+  id: 'id',
+  guideId: 'guideId',
+  title: 'title',
+  description: 'description',
+  itinerary: 'itinerary',
+  category: 'category',
+  price: 'price',
+  durationDays: 'durationDays',
+  maxGroupSize: 'maxGroupSize',
+  meetingPoint: 'meetingPoint',
+  city: 'city',
+  images: 'images',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GuideSpotScalarFieldEnum = (typeof GuideSpotScalarFieldEnum)[keyof typeof GuideSpotScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  amount: 'amount',
+  transactionId: 'transactionId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  bookingId: 'bookingId',
+  guideId: 'guideId',
+  guideSpotId: 'guideSpotId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -951,6 +967,7 @@ export const UserScalarFieldEnum = {
   profilePhoto: 'profilePhoto',
   bio: 'bio',
   language: 'language',
+  isBlocked: 'isBlocked',
   createdAt: 'createdAt',
   updateAt: 'updateAt'
 } as const
@@ -962,7 +979,7 @@ export const GuideProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   location: 'location',
-  pricePerHour: 'pricePerHour',
+  pricePerDay: 'pricePerDay',
   isAvailable: 'isAvailable',
   experienceYears: 'experienceYears'
 } as const
@@ -1015,48 +1032,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
- * Reference to a field of type 'PaymentStatus'
- */
-export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
-    
-
-
-/**
- * Reference to a field of type 'PaymentStatus[]'
- */
-export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'PaymentMethod'
- */
-export type EnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod'>
-    
-
-
-/**
- * Reference to a field of type 'PaymentMethod[]'
- */
-export type ListEnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod[]'>
-    
-
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1067,6 +1042,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -1085,16 +1074,30 @@ export type ListEnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
- * Reference to a field of type 'userRole'
+ * Reference to a field of type 'TourCategory'
  */
-export type EnumuserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRole'>
+export type EnumTourCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TourCategory'>
     
 
 
 /**
- * Reference to a field of type 'userRole[]'
+ * Reference to a field of type 'TourCategory[]'
  */
-export type ListEnumuserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRole[]'>
+export type ListEnumTourCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TourCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -1106,16 +1109,30 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Float'
+ * Reference to a field of type 'PaymentStatus'
  */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
     
 
 
 /**
- * Reference to a field of type 'Float[]'
+ * Reference to a field of type 'PaymentStatus[]'
  */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'userRole'
+ */
+export type EnumuserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRole'>
+    
+
+
+/**
+ * Reference to a field of type 'userRole[]'
+ */
+export type ListEnumuserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRole[]'>
     
 
 /**
@@ -1213,10 +1230,10 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  guideArea?: Prisma.GuideAreaOmit
+  booking?: Prisma.BookingOmit
+  guideSpot?: Prisma.GuideSpotOmit
   payment?: Prisma.PaymentOmit
   review?: Prisma.ReviewOmit
-  booking?: Prisma.BookingOmit
   user?: Prisma.userOmit
   guideProfile?: Prisma.guideProfileOmit
 }

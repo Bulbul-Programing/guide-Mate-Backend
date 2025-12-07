@@ -5,8 +5,8 @@ import cors from 'cors';
 // import config from './config';
 import cookieParser from 'cookie-parser'
 import router from './app/routes';
-import { envVar } from './app/envConfig';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
+import { envVars } from './app/envConfig';
 // import { PaymentController } from './app/modules/payment/payment.controller';
 // import cron from 'node-cron';
 // import { AppointmentService } from './app/modules/appointment/appointment.service';
@@ -43,7 +43,7 @@ app.use("/api/v1", router);
 app.get('/', (req: Request, res: Response) => {
     res.send({
         message: "Server is running..",
-        environment: envVar.node_env,
+        environment: envVars.NODE_ENV,
         uptime: process.uptime().toFixed(2) + " sec",
         timeStamp: new Date().toISOString()
     })

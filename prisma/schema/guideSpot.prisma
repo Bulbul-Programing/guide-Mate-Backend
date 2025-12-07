@@ -1,0 +1,20 @@
+model GuideSpot {
+    id           String       @id @default(uuid())
+    guideId      String
+    title        String
+    description  String
+    itinerary    String
+    category     TourCategory
+    price        Float
+    durationDays Int
+    maxGroupSize Int
+    meetingPoint String
+    city         String
+    images       String[]
+    isActive     Boolean      @default(true)
+    bookings     Booking[]
+    reviews      Review[]
+    guide        guideProfile @relation(fields: [guideId], references: [id])
+    createdAt    DateTime     @default(now())
+    updatedAt    DateTime     @updatedAt
+}

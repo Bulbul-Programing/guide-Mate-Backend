@@ -4,16 +4,12 @@ import catchAsync from "../utils/catchAsync";
 import AppError from "../error/AppError";
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { isUserExist } from "../utils/isUserExist";
+import { envVars } from "../envConfig";
 
 const verifyToken = (...requiredRoles: TUserRole[]) => {
     return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-        const tokenWithBearer = req.headers.authorization;
 
-        if (!tokenWithBearer) {
-            throw new AppError(401, 'You are not authorized!');
-        }
-
-        const token = tokenWithBearer?.split(' ')[1]
+        const token = req.cookies?.accessToken;
 
         if (!token) {
             throw new AppError(401, 'Invalid token!');
@@ -21,7 +17,7 @@ const verifyToken = (...requiredRoles: TUserRole[]) => {
 
         const decoded = jwt.verify(
             token,
-            '1d2f3g4h5j6k7l8m9n0p'
+            envVars.ACCESS_TOKEN_SECRETE
         ) as JwtPayload;
 
         const { email, role } = decoded;

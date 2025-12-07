@@ -8,10 +8,10 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/GuideArea'
+export type * from './models/Booking'
+export type * from './models/GuideSpot'
 export type * from './models/Payment'
 export type * from './models/Review'
-export type * from './models/Booking'
 export type * from './models/user'
 export type * from './models/guideProfile'
 export type * from './commonInputTypes'

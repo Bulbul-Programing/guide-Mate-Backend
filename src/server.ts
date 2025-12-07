@@ -1,6 +1,6 @@
 import { Server } from 'http';
 import app from './app';
-import { envVar } from './app/envConfig';
+import { envVars } from './app/envConfig';
 
 
 async function bootstrap() {
@@ -9,8 +9,8 @@ async function bootstrap() {
 
     try {
         // Start the server
-        server = app.listen(envVar.port, () => {
-            console.log(`🚀 Server is running on http://localhost:${envVar.port}`);
+        server = app.listen(envVars.PORT, () => {
+            console.log(`🚀 Server is running on http://localhost:${envVars.PORT}`);
         });
 
         // Function to gracefully shut down the server

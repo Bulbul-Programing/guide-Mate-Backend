@@ -10,6 +10,7 @@ export type TUser = {
     role: TUserRole;
     profilePhoto?: string;
     bio?: string;
+    isBlocked?: boolean;
     language: string[];
 }
 
