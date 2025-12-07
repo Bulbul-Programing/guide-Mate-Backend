@@ -13,7 +13,7 @@ export type TUser = {
     language: string[];
 }
 
-export interface GuideProfile {
+export type TGuideProfile = {
     id: string;
     userId: string;
     location: string;

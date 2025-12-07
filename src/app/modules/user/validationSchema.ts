@@ -12,7 +12,26 @@ const createUserSchema = z.object({
     language: z.array(z.string()).min(1),
 });
 
+export const GuideProfileSchema = z.object({
+  location: z.string().min(1, "Location is required"),
+  pricePerHour: z.number().int().nonnegative(),
+  isAvailable: z.boolean().default(true),
+  experienceYears: z.number().int().nonnegative().optional(),
+});
+
+const updateUserSchema = z.object({
+    name: z.string().min(1).optional(),
+    phone: z.string().min(6).optional(),
+    password: z.string().min(6).optional(),
+    role: userRoleEnum.optional(),
+    profilePhoto: z.string().url().nullable().optional(),
+    bio: z.string().max(1000).nullable().optional(),
+    language: z.array(z.string()).min(1).optional(),
+});
+
 
 export const UserValidationSchema = {
-    createUserSchema
+    createUserSchema,
+    GuideProfileSchema,
+    updateUserSchema
 }

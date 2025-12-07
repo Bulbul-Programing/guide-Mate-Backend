@@ -7,8 +7,8 @@ model Booking {
     totalPrice Int
     status     BookingStatus @default(PENDING)
 
-    traveler User @relation("TravelerBookings", fields: [travelerId], references: [id])
-    guide    User @relation("GuideBookings", fields: [guideId], references: [id])
+    traveler user @relation("TravelerBookings", fields: [travelerId], references: [id])
+    guide    user @relation("GuideBookings", fields: [guideId], references: [id])
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

@@ -4,5 +4,5 @@ model GuideArea {
     name        String // e.g. "Cox’s Bazar Sea Beach", "Shadarghat"
     description String?
 
-    guide GuideProfile @relation(fields: [guideId], references: [id])
+    guide guideProfile @relation(fields: [guideId], references: [id])
 }
