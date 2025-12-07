@@ -68,11 +68,13 @@ const getAllUsers = async (query: any) => {
         .paginate()
         .fields()
 
+    console.log(courseQuery);
+
     const result = await prisma.user.findMany(courseQuery.prismaQuery);
     const total = await prisma.user.count({
         where: courseQuery.prismaQuery.where,
     });
-    const g = {
+    const resultWithMetaData = {
         meta: {
             page: Number(page),
             limit: Number(limit),
@@ -82,7 +84,7 @@ const getAllUsers = async (query: any) => {
         },
         data: result
     }
-    return g
+    return resultWithMetaData
 }
 
 export const userService = {

@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 
 type QueryParams = Record<string, unknown>;
 
@@ -12,10 +11,10 @@ class QueryBuilder<T> {
             where: {},
         };
     }
-
+   
     searching(searchableFields: string[]) {
         const searchTerm = this.query.searchTerm as string;
-
+        
         if (searchTerm) {
             this.prismaQuery.where = {
                 ...this.prismaQuery.where,
@@ -66,7 +65,7 @@ class QueryBuilder<T> {
 
     sort() {
         const sort = this.query.sort as string;
-
+       
         if (sort) {
             this.prismaQuery.orderBy = sort.split(',').map((field) => {
                 if (field.startsWith('-')) {
