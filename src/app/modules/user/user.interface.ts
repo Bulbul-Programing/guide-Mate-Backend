@@ -1,4 +1,4 @@
-import type { UserRole } from "../../types/UserRole";
+import type { TUserRole } from "../../types/UserRole";
 import type { GuideArea } from "../guideArea/guideArea.interface";
 
 export type TUser = {
@@ -7,7 +7,7 @@ export type TUser = {
     email: string;
     phone: string;
     password: string;
-    role: UserRole;
+    role: TUserRole;
     profilePhoto?: string;
     bio?: string;
     language: string[];

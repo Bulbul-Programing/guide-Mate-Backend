@@ -1,1 +1,1 @@
-export type UserRole = 'TRAVELER' | 'GUIDE' | 'ADMIN';
+export type TUserRole = 'TRAVELER' | 'GUIDE' | 'ADMIN';
