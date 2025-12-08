@@ -1,16 +1,18 @@
 import QueryBuilder from "../../builder/QueryBuilder"
 import { prisma } from "../../config/db"
+import AppError from "../../error/AppError"
 import { IOptions, paginateCalculation } from "../../utils/paginateCalculation"
 import { guideSearchableFields } from "./guideSpot.const"
 import { TGuideSpot } from "./guideSpot.interface"
 
 
 const creteGuideSpot = async (data: TGuideSpot) => {
+    
     const isExistsGuide = await prisma.user.findUnique({
         where: { id: data.guideId }
     })
     if (!isExistsGuide || isExistsGuide.role !== 'GUIDE') {
-        throw new Error('Guide not found')
+        throw new AppError(404, 'Guide not found')
     }
 
     const guideSpot = await prisma.guideSpot.create({
@@ -28,9 +30,12 @@ const getAllGuideSpots = async (options: any) => {
         .filter()
         .sort()
         .fields()
+        .paginate()
 
     const result = await prisma.guideSpot.findMany(guideQueryBuilder.prismaQuery)
-    const total = await prisma.guideSpot.count(guideQueryBuilder.prismaQuery)
+    const total = await prisma.guideSpot.count({
+        where: guideQueryBuilder.prismaQuery.where
+    })
 
     const resultWithMetaData = {
         meta: {
@@ -59,9 +64,20 @@ const updateGuideSpot = async (guideSpotId: string, guideSpotData: Partial<TGuid
     return updatedGuideSpot
 }
 
+const deleteGuideSpot = async (guideSpotId: string) => {
+    const deleteGuideSpot = await prisma.guideSpot.findUniqueOrThrow({
+        where: { id: guideSpotId }
+    })
+    await prisma.guideSpot.delete({
+        where: { id: guideSpotId }
+    })
+
+    return deleteGuideSpot
+}
 
 export const guideService = {
     creteGuideSpot,
     getAllGuideSpots,
-    updateGuideSpot
+    updateGuideSpot,
+    deleteGuideSpot
 }

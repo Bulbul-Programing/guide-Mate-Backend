@@ -10,8 +10,6 @@ const TourCategorySchema = z.enum([
 ])
 
 const guideSpotCreationSchema = z.object({
-    guideId: z.string('Invalid guide ID'),
-
     title: z
         .string()
         .min(3, 'Title must be at least 3 characters')

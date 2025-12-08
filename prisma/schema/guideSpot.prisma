@@ -13,7 +13,7 @@ model GuideSpot {
     isActive     Boolean      @default(true)
     bookings     Booking[]
     reviews      Review[]
-    guide        guideProfile @relation(fields: [guideId], references: [id])
+    guide        guideProfile @relation(fields: [guideId], references: [userId])
     createdAt    DateTime     @default(now())
     updatedAt    DateTime     @updatedAt
 }

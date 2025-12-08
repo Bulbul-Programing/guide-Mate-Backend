@@ -5,6 +5,8 @@ import { guideService } from "./guideSpot.service";
 
 const createGuide = catchAsync(async (req: Request, res: Response) => {
     const guideInfo = req.body
+    guideInfo.guideId = req.user.userId;
+
     const result = await guideService.creteGuideSpot(guideInfo);
 
     sendResponse(res, {
@@ -40,8 +42,21 @@ const getAllGuideSpots = catchAsync(async (req: Request, res: Response) => {
     });
 })
 
+const deleteGuideSpot = catchAsync(async (req: Request, res: Response) => {
+    const guideSpotId = req.params.guideSpotId;
+    await guideService.deleteGuideSpot(guideSpotId);
+
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "Guide spot deleted successfully!",
+        data: null
+    })
+})
+
 export const guideController = {
     createGuide,
     getAllGuideSpots,
-    updateGuide
+    updateGuide,
+    deleteGuideSpot
 }

@@ -20,8 +20,8 @@ model user {
 model guideProfile {
     id              String      @id @default(uuid())
     userId          String      @unique
-    location        String
-    pricePerDay     Int
+    location        String?
+    pricePerDay     Int?
     isAvailable     Boolean     @default(true)
     experienceYears Int?        @default(0)
     guideSpots      GuideSpot[]

@@ -1,5 +1,4 @@
 import type { TUserRole } from "../../types/UserRole";
-import type { GuideArea } from "../guideArea/guideArea.interface";
 
 export type TUser = {
     id: string;
@@ -15,10 +14,9 @@ export type TUser = {
 }
 
 export type TGuideProfile = {
-    id: string;
-    userId: string;
-    location: string;
-    pricePerHour: number;
-    isAvailable: boolean;
+    userId?: string;
+    location?: string;
+    pricePerHour?: number;
+    isAvailable?: boolean;
     experienceYears?: number;
 }

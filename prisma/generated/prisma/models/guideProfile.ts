@@ -192,8 +192,8 @@ export type guideProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type GuideProfileGroupByOutputType = {
   id: string
   userId: string
-  location: string
-  pricePerDay: number
+  location: string | null
+  pricePerDay: number | null
   isAvailable: boolean
   experienceYears: number | null
   _count: GuideProfileCountAggregateOutputType | null
@@ -224,8 +224,8 @@ export type guideProfileWhereInput = {
   NOT?: Prisma.guideProfileWhereInput | Prisma.guideProfileWhereInput[]
   id?: Prisma.StringFilter<"guideProfile"> | string
   userId?: Prisma.StringFilter<"guideProfile"> | string
-  location?: Prisma.StringFilter<"guideProfile"> | string
-  pricePerDay?: Prisma.IntFilter<"guideProfile"> | number
+  location?: Prisma.StringNullableFilter<"guideProfile"> | string | null
+  pricePerDay?: Prisma.IntNullableFilter<"guideProfile"> | number | null
   isAvailable?: Prisma.BoolFilter<"guideProfile"> | boolean
   experienceYears?: Prisma.IntNullableFilter<"guideProfile"> | number | null
   guideSpots?: Prisma.GuideSpotListRelationFilter
@@ -236,8 +236,8 @@ export type guideProfileWhereInput = {
 export type guideProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  pricePerDay?: Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
+  pricePerDay?: Prisma.SortOrderInput | Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   experienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
   guideSpots?: Prisma.GuideSpotOrderByRelationAggregateInput
@@ -251,8 +251,8 @@ export type guideProfileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.guideProfileWhereInput | Prisma.guideProfileWhereInput[]
   OR?: Prisma.guideProfileWhereInput[]
   NOT?: Prisma.guideProfileWhereInput | Prisma.guideProfileWhereInput[]
-  location?: Prisma.StringFilter<"guideProfile"> | string
-  pricePerDay?: Prisma.IntFilter<"guideProfile"> | number
+  location?: Prisma.StringNullableFilter<"guideProfile"> | string | null
+  pricePerDay?: Prisma.IntNullableFilter<"guideProfile"> | number | null
   isAvailable?: Prisma.BoolFilter<"guideProfile"> | boolean
   experienceYears?: Prisma.IntNullableFilter<"guideProfile"> | number | null
   guideSpots?: Prisma.GuideSpotListRelationFilter
@@ -263,8 +263,8 @@ export type guideProfileWhereUniqueInput = Prisma.AtLeast<{
 export type guideProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  pricePerDay?: Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
+  pricePerDay?: Prisma.SortOrderInput | Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   experienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.guideProfileCountOrderByAggregateInput
@@ -280,16 +280,16 @@ export type guideProfileScalarWhereWithAggregatesInput = {
   NOT?: Prisma.guideProfileScalarWhereWithAggregatesInput | Prisma.guideProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"guideProfile"> | string
   userId?: Prisma.StringWithAggregatesFilter<"guideProfile"> | string
-  location?: Prisma.StringWithAggregatesFilter<"guideProfile"> | string
-  pricePerDay?: Prisma.IntWithAggregatesFilter<"guideProfile"> | number
+  location?: Prisma.StringNullableWithAggregatesFilter<"guideProfile"> | string | null
+  pricePerDay?: Prisma.IntNullableWithAggregatesFilter<"guideProfile"> | number | null
   isAvailable?: Prisma.BoolWithAggregatesFilter<"guideProfile"> | boolean
   experienceYears?: Prisma.IntNullableWithAggregatesFilter<"guideProfile"> | number | null
 }
 
 export type guideProfileCreateInput = {
   id?: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
@@ -300,8 +300,8 @@ export type guideProfileCreateInput = {
 export type guideProfileUncheckedCreateInput = {
   id?: string
   userId: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
@@ -310,8 +310,8 @@ export type guideProfileUncheckedCreateInput = {
 
 export type guideProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
@@ -322,8 +322,8 @@ export type guideProfileUpdateInput = {
 export type guideProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
@@ -333,16 +333,16 @@ export type guideProfileUncheckedUpdateInput = {
 export type guideProfileCreateManyInput = {
   id?: string
   userId: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
 }
 
 export type guideProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
@@ -350,8 +350,8 @@ export type guideProfileUpdateManyMutationInput = {
 export type guideProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
@@ -473,8 +473,8 @@ export type NullableIntFieldUpdateOperationsInput = {
 
 export type guideProfileCreateWithoutGuideSpotsInput = {
   id?: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   user: Prisma.userCreateNestedOneWithoutGuideProfileInput
@@ -484,8 +484,8 @@ export type guideProfileCreateWithoutGuideSpotsInput = {
 export type guideProfileUncheckedCreateWithoutGuideSpotsInput = {
   id?: string
   userId: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideInput
@@ -509,8 +509,8 @@ export type guideProfileUpdateToOneWithWhereWithoutGuideSpotsInput = {
 
 export type guideProfileUpdateWithoutGuideSpotsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user?: Prisma.userUpdateOneRequiredWithoutGuideProfileNestedInput
@@ -520,8 +520,8 @@ export type guideProfileUpdateWithoutGuideSpotsInput = {
 export type guideProfileUncheckedUpdateWithoutGuideSpotsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideNestedInput
@@ -529,8 +529,8 @@ export type guideProfileUncheckedUpdateWithoutGuideSpotsInput = {
 
 export type guideProfileCreateWithoutReviewsInput = {
   id?: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
@@ -540,8 +540,8 @@ export type guideProfileCreateWithoutReviewsInput = {
 export type guideProfileUncheckedCreateWithoutReviewsInput = {
   id?: string
   userId: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
@@ -565,8 +565,8 @@ export type guideProfileUpdateToOneWithWhereWithoutReviewsInput = {
 
 export type guideProfileUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
@@ -576,8 +576,8 @@ export type guideProfileUpdateWithoutReviewsInput = {
 export type guideProfileUncheckedUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
@@ -585,8 +585,8 @@ export type guideProfileUncheckedUpdateWithoutReviewsInput = {
 
 export type guideProfileCreateWithoutUserInput = {
   id?: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
@@ -595,8 +595,8 @@ export type guideProfileCreateWithoutUserInput = {
 
 export type guideProfileUncheckedCreateWithoutUserInput = {
   id?: string
-  location: string
-  pricePerDay: number
+  location?: string | null
+  pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
@@ -621,8 +621,8 @@ export type guideProfileUpdateToOneWithWhereWithoutUserInput = {
 
 export type guideProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
@@ -631,8 +631,8 @@ export type guideProfileUpdateWithoutUserInput = {
 
 export type guideProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerDay?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
@@ -745,8 +745,8 @@ export type $guideProfilePayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    location: string
-    pricePerDay: number
+    location: string | null
+    pricePerDay: number | null
     isAvailable: boolean
     experienceYears: number | null
   }, ExtArgs["result"]["guideProfile"]>

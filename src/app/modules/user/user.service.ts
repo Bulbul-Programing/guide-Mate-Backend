@@ -20,9 +20,20 @@ const createUser = async (userInfo: TUser) => {
     const hashPassword = await bcrypt.hash(userInfo.password, 10);
     userInfo.password = hashPassword;
 
-    const result = await prisma.user.create({
-        data: userInfo
-    });
+    const result = await prisma.$transaction(async (tnx) => {
+        const createUser = await tnx.user.create({
+            data: userInfo
+        });
+        if (userInfo.role === 'GUIDE') {
+            await tnx.guideProfile.create({
+                data: {
+                    userId: createUser.id
+                }
+            });
+        }
+        return createUser;
+    })
+
     const { password, ...userWithoutPassword } = result;
     return userWithoutPassword;
 }

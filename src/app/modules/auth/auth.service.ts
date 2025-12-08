@@ -25,6 +25,7 @@ const loginUser = async (payload: TLoginInfo) => {
     const tokenPayload = {
         email: isExistUser.email,
         role: isExistUser.role,
+        userId: isExistUser.id
     }
 
     const accessToken = generateToken(tokenPayload, envVars.ACCESS_TOKEN_SECRETE, envVars.ACCESS_TOKEN_EXPIRE)
