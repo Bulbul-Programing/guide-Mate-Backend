@@ -1,17 +1,17 @@
 model Booking {
-  id         String        @id @default(uuid())
-  bookingId  String        @map("bookingId")
-  touristId  String
-  guideId    String
-  startDate  DateTime
-  endDate    DateTime
-  totalPrice Float
-  status     BookingStatus
-  payment    Payment?
-  review     Review?
-  tour       GuideSpot     @relation(fields: [bookingId], references: [id])
-  guide      user          @relation("GuideBookings", fields: [guideId], references: [id])
-  tourist    user          @relation("TouristBookings", fields: [touristId], references: [id])
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
+  id          String        @id @default(uuid())
+  guideSpotId String
+  touristId   String
+  guideId     String
+  startDate   DateTime
+  endDate     DateTime
+  totalPrice  Float
+  status      BookingStatus @default(PENDING)
+  payment     Payment?
+  review      Review?
+  guideSpot   GuideSpot     @relation(fields: [guideSpotId], references: [id])
+  guide       user          @relation("GuideBookings", fields: [guideId], references: [id])
+  tourist     user          @relation("TouristBookings", fields: [touristId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }

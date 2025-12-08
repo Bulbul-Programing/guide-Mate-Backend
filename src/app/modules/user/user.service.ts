@@ -19,7 +19,7 @@ const createUser = async (userInfo: TUser) => {
         throw new AppError(403, 'User with this email already exists');
     }
 
-    const hashPassword = await bcrypt.hash(userInfo.password, envVars.BCRYPT_ROUNDS);
+    const hashPassword = await bcrypt.hash(userInfo.password, Number(envVars.BCRYPT_ROUNDS));
     userInfo.password = hashPassword;
 
     const result = await prisma.$transaction(async (tnx) => {
@@ -65,7 +65,7 @@ const updateUser = async (userId: string, userData: Partial<TUser>) => {
     }
 
     if (userData.password) {
-        const hashPassword = await bcrypt.hash(userData.password, envVars.BCRYPT_ROUNDS);
+        const hashPassword = await bcrypt.hash(userData.password, Number(envVars.BCRYPT_ROUNDS));
         userData.password = hashPassword;
     }
 

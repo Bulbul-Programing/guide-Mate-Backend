@@ -292,7 +292,7 @@ export type PaymentCreateInput = {
   id?: string
   amount: number
   transactionId: string
-  status: $Enums.PaymentStatus
+  status?: $Enums.PaymentStatus
   createdAt?: Date | string
   updateAt?: Date | string
   booking: Prisma.BookingCreateNestedOneWithoutPaymentInput
@@ -303,7 +303,7 @@ export type PaymentUncheckedCreateInput = {
   bookingId: string
   amount: number
   transactionId: string
-  status: $Enums.PaymentStatus
+  status?: $Enums.PaymentStatus
   createdAt?: Date | string
   updateAt?: Date | string
 }
@@ -333,7 +333,7 @@ export type PaymentCreateManyInput = {
   bookingId: string
   amount: number
   transactionId: string
-  status: $Enums.PaymentStatus
+  status?: $Enums.PaymentStatus
   createdAt?: Date | string
   updateAt?: Date | string
 }
@@ -440,7 +440,7 @@ export type PaymentCreateWithoutBookingInput = {
   id?: string
   amount: number
   transactionId: string
-  status: $Enums.PaymentStatus
+  status?: $Enums.PaymentStatus
   createdAt?: Date | string
   updateAt?: Date | string
 }
@@ -449,7 +449,7 @@ export type PaymentUncheckedCreateWithoutBookingInput = {
   id?: string
   amount: number
   transactionId: string
-  status: $Enums.PaymentStatus
+  status?: $Enums.PaymentStatus
   createdAt?: Date | string
   updateAt?: Date | string
 }

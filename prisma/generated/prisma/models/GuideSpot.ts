@@ -392,7 +392,7 @@ export type GuideSpotCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  bookings?: Prisma.BookingCreateNestedManyWithoutTourInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutGuideSpotInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutGuideSpotInput
   guide: Prisma.guideProfileCreateNestedOneWithoutGuideSpotsInput
 }
@@ -412,7 +412,7 @@ export type GuideSpotUncheckedCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTourInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutGuideSpotInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideSpotInput
 }
 
@@ -430,7 +430,7 @@ export type GuideSpotUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUpdateManyWithoutTourNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutGuideSpotNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutGuideSpotNestedInput
   guide?: Prisma.guideProfileUpdateOneRequiredWithoutGuideSpotsNestedInput
 }
@@ -450,7 +450,7 @@ export type GuideSpotUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTourNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutGuideSpotNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideSpotNestedInput
 }
 
@@ -790,7 +790,7 @@ export type GuideSpotCreateWithoutReviewsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  bookings?: Prisma.BookingCreateNestedManyWithoutTourInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutGuideSpotInput
   guide: Prisma.guideProfileCreateNestedOneWithoutGuideSpotsInput
 }
 
@@ -809,7 +809,7 @@ export type GuideSpotUncheckedCreateWithoutReviewsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTourInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutGuideSpotInput
 }
 
 export type GuideSpotCreateOrConnectWithoutReviewsInput = {
@@ -842,7 +842,7 @@ export type GuideSpotUpdateWithoutReviewsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUpdateManyWithoutTourNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutGuideSpotNestedInput
   guide?: Prisma.guideProfileUpdateOneRequiredWithoutGuideSpotsNestedInput
 }
 
@@ -861,7 +861,7 @@ export type GuideSpotUncheckedUpdateWithoutReviewsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTourNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutGuideSpotNestedInput
 }
 
 export type GuideSpotCreateWithoutGuideInput = {
@@ -878,7 +878,7 @@ export type GuideSpotCreateWithoutGuideInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  bookings?: Prisma.BookingCreateNestedManyWithoutTourInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutGuideSpotInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutGuideSpotInput
 }
 
@@ -896,7 +896,7 @@ export type GuideSpotUncheckedCreateWithoutGuideInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTourInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutGuideSpotInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideSpotInput
 }
 
@@ -976,7 +976,7 @@ export type GuideSpotUpdateWithoutGuideInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUpdateManyWithoutTourNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutGuideSpotNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutGuideSpotNestedInput
 }
 
@@ -994,7 +994,7 @@ export type GuideSpotUncheckedUpdateWithoutGuideInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTourNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutGuideSpotNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideSpotNestedInput
 }
 

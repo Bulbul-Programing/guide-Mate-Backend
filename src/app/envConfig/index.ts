@@ -13,6 +13,8 @@ interface EnvConfig {
     DATABASE_URL: string,
     EXPRESS_SESSION_SECRET: string
     FRONTEND_URL: string
+    STRIPE_SECRET_KEY: string
+    STRIPE_WEBHOOK_SECRET: string
 }
 
 const localEnvVariables = (): EnvConfig => {
@@ -29,7 +31,9 @@ const localEnvVariables = (): EnvConfig => {
         'REFRESH_TOKEN_EXPIRE',
         'DATABASE_URL',
         'EXPRESS_SESSION_SECRET',
-        'FRONTEND_URL'
+        'FRONTEND_URL',
+        'STRIPE_SECRET_KEY',
+        'STRIPE_WEBHOOK_SECRET'
     ]
 
     requiredEnvVariables.forEach(envVar => {
@@ -52,6 +56,8 @@ const localEnvVariables = (): EnvConfig => {
         DATABASE_URL: process.env.DATABASE_URL as string,
         EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET as string,
         FRONTEND_URL: process.env.FRONTEND_URL as string,
+        STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
+        STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET as string
     }
 }
 
