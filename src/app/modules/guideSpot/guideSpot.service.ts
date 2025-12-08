@@ -7,13 +7,20 @@ import { TGuideSpot } from "./guideSpot.interface"
 
 
 const creteGuideSpot = async (data: TGuideSpot) => {
-    
+
     const isExistsGuide = await prisma.user.findUnique({
-        where: { id: data.guideId }
+        where: { id: data.guideId },
+        include: { guideProfile: true }
     })
     if (!isExistsGuide || isExistsGuide.role !== 'GUIDE') {
         throw new AppError(404, 'Guide not found')
     }
+
+    if (!isExistsGuide.guideProfile?.pricePerDay) {
+        throw new AppError(400, 'Please complete your guide profile before creating a guide spot')
+    }
+
+    console.log(isExistsGuide);
 
     const guideSpot = await prisma.guideSpot.create({
         data: data

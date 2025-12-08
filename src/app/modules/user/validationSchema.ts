@@ -14,8 +14,15 @@ const createUserSchema = z.object({
 
 export const GuideProfileSchema = z.object({
   location: z.string().min(1, "Location is required"),
-  pricePerHour: z.number().int().nonnegative(),
+  pricePerDay: z.number().int().nonnegative(),
   isAvailable: z.boolean().default(true),
+  experienceYears: z.number().int().nonnegative().optional(),
+});
+
+export const GuideProfileUpdateSchema = z.object({
+  location: z.string().min(1, "Location is required").optional(),
+  pricePerDay: z.number().int().nonnegative().optional(),
+  isAvailable: z.boolean().default(true).optional(),
   experienceYears: z.number().int().nonnegative().optional(),
 });
 
@@ -33,5 +40,6 @@ const updateUserSchema = z.object({
 export const UserValidationSchema = {
     createUserSchema,
     GuideProfileSchema,
+    GuideProfileUpdateSchema,
     updateUserSchema
 }

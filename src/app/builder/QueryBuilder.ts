@@ -11,10 +11,10 @@ class QueryBuilder<T> {
             where: {},
         };
     }
-   
+
     searching(searchableFields: string[]) {
         const searchTerm = this.query.searchTerm as string;
-        
+
         if (searchTerm) {
             this.prismaQuery.where = {
                 ...this.prismaQuery.where,
@@ -33,8 +33,8 @@ class QueryBuilder<T> {
         if (this.query.category) {
             this.prismaQuery.where = {
                 ...this.prismaQuery.where,
-                category: this.query.category as string,
-            };
+                category: (this.query.category).toString().toUpperCase() as string,
+            }
         }
         return this;
     }
@@ -65,7 +65,7 @@ class QueryBuilder<T> {
 
     sort() {
         const sort = this.query.sort as string;
-       
+
         if (sort) {
             this.prismaQuery.orderBy = sort.split(',').map((field) => {
                 if (field.startsWith('-')) {

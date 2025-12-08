@@ -16,7 +16,7 @@ export type TUser = {
 export type TGuideProfile = {
     userId?: string;
     location?: string;
-    pricePerHour?: number;
+    pricePerDay?: number;
     isAvailable?: boolean;
     experienceYears?: number;
 }
