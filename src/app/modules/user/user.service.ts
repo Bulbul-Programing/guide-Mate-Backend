@@ -6,6 +6,8 @@ import { prisma } from "../../config/db";
 import AppError from "../../error/AppError";
 import QueryBuilder from "../../builder/QueryBuilder";
 import { IOptions, paginateCalculation } from "../../utils/paginateCalculation";
+import { th } from "zod/v4/locales";
+import { envVars } from "../../envConfig";
 
 const createUser = async (userInfo: TUser) => {
     const isExistUser = await prisma.user.findUnique({
@@ -17,7 +19,7 @@ const createUser = async (userInfo: TUser) => {
         throw new AppError(403, 'User with this email already exists');
     }
 
-    const hashPassword = await bcrypt.hash(userInfo.password, 10);
+    const hashPassword = await bcrypt.hash(userInfo.password, envVars.BCRYPT_ROUNDS);
     userInfo.password = hashPassword;
 
     const result = await prisma.$transaction(async (tnx) => {
@@ -54,6 +56,19 @@ const updateGuideProfile = async (userId: string, guideProfileData: TGuideProfil
 }
 
 const updateUser = async (userId: string, userData: Partial<TUser>) => {
+    if (userData.email) {
+        throw new AppError(400, 'Email cannot be updated');
+    }
+
+    if (userData.role) {
+        throw new AppError(400, 'Role cannot be updated');
+    }
+
+    if (userData.password) {
+        const hashPassword = await bcrypt.hash(userData.password, envVars.BCRYPT_ROUNDS);
+        userData.password = hashPassword;
+    }
+
     const isExistUser = await prisma.user.findUnique({
         where: {
             id: userId
