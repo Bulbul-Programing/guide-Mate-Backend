@@ -5,7 +5,6 @@ model GuideSpot {
     description  String
     itinerary    String
     category     TourCategory
-    price        Float
     durationDays Int
     maxGroupSize Int
     meetingPoint String

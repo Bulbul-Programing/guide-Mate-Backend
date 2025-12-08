@@ -1,6 +1,7 @@
 import express from 'express';
 import { userRoutes } from '../modules/user/user.route';
 import { authRoutes } from '../modules/auth/auth.router';
+import { guideSpotRoutes } from '../modules/guideSpot/guideSpot.route';
 
 type TModuleRoutes = {
     path: string,
@@ -16,7 +17,11 @@ const moduleRoutes: TModuleRoutes[] = [
     {
         path: '/auth',
         route: authRoutes
-    }
+    },
+    {
+        path: '/guide-spot',
+        route: guideSpotRoutes
+    },
 ]
 moduleRoutes.forEach(route => router.use(route.path, route.route))
 export default router;

@@ -915,7 +915,6 @@ export const GuideSpotScalarFieldEnum = {
   description: 'description',
   itinerary: 'itinerary',
   category: 'category',
-  price: 'price',
   durationDays: 'durationDays',
   maxGroupSize: 'maxGroupSize',
   meetingPoint: 'meetingPoint',

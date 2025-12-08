@@ -5,7 +5,7 @@ import { UserValidationSchema } from "./validationSchema";
 import { prisma } from "../../config/db";
 import AppError from "../../error/AppError";
 import QueryBuilder from "../../builder/QueryBuilder";
-import { paginateCalculation } from "../../utils/paginateCalculation";
+import { IOptions, paginateCalculation } from "../../utils/paginateCalculation";
 
 const createUser = async (userInfo: TUser) => {
     const isExistUser = await prisma.user.findUnique({
@@ -67,8 +67,6 @@ const getAllUsers = async (query: any) => {
         .sort()
         .paginate()
         .fields()
-
-    console.log(courseQuery);
 
     const result = await prisma.user.findMany(courseQuery.prismaQuery);
     const total = await prisma.user.count({

@@ -27,13 +27,11 @@ export type AggregateGuideSpot = {
 }
 
 export type GuideSpotAvgAggregateOutputType = {
-  price: number | null
   durationDays: number | null
   maxGroupSize: number | null
 }
 
 export type GuideSpotSumAggregateOutputType = {
-  price: number | null
   durationDays: number | null
   maxGroupSize: number | null
 }
@@ -45,7 +43,6 @@ export type GuideSpotMinAggregateOutputType = {
   description: string | null
   itinerary: string | null
   category: $Enums.TourCategory | null
-  price: number | null
   durationDays: number | null
   maxGroupSize: number | null
   meetingPoint: string | null
@@ -62,7 +59,6 @@ export type GuideSpotMaxAggregateOutputType = {
   description: string | null
   itinerary: string | null
   category: $Enums.TourCategory | null
-  price: number | null
   durationDays: number | null
   maxGroupSize: number | null
   meetingPoint: string | null
@@ -79,7 +75,6 @@ export type GuideSpotCountAggregateOutputType = {
   description: number
   itinerary: number
   category: number
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: number
@@ -93,13 +88,11 @@ export type GuideSpotCountAggregateOutputType = {
 
 
 export type GuideSpotAvgAggregateInputType = {
-  price?: true
   durationDays?: true
   maxGroupSize?: true
 }
 
 export type GuideSpotSumAggregateInputType = {
-  price?: true
   durationDays?: true
   maxGroupSize?: true
 }
@@ -111,7 +104,6 @@ export type GuideSpotMinAggregateInputType = {
   description?: true
   itinerary?: true
   category?: true
-  price?: true
   durationDays?: true
   maxGroupSize?: true
   meetingPoint?: true
@@ -128,7 +120,6 @@ export type GuideSpotMaxAggregateInputType = {
   description?: true
   itinerary?: true
   category?: true
-  price?: true
   durationDays?: true
   maxGroupSize?: true
   meetingPoint?: true
@@ -145,7 +136,6 @@ export type GuideSpotCountAggregateInputType = {
   description?: true
   itinerary?: true
   category?: true
-  price?: true
   durationDays?: true
   maxGroupSize?: true
   meetingPoint?: true
@@ -250,7 +240,6 @@ export type GuideSpotGroupByOutputType = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -291,7 +280,6 @@ export type GuideSpotWhereInput = {
   description?: Prisma.StringFilter<"GuideSpot"> | string
   itinerary?: Prisma.StringFilter<"GuideSpot"> | string
   category?: Prisma.EnumTourCategoryFilter<"GuideSpot"> | $Enums.TourCategory
-  price?: Prisma.FloatFilter<"GuideSpot"> | number
   durationDays?: Prisma.IntFilter<"GuideSpot"> | number
   maxGroupSize?: Prisma.IntFilter<"GuideSpot"> | number
   meetingPoint?: Prisma.StringFilter<"GuideSpot"> | string
@@ -312,7 +300,6 @@ export type GuideSpotOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   itinerary?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
   meetingPoint?: Prisma.SortOrder
@@ -336,7 +323,6 @@ export type GuideSpotWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"GuideSpot"> | string
   itinerary?: Prisma.StringFilter<"GuideSpot"> | string
   category?: Prisma.EnumTourCategoryFilter<"GuideSpot"> | $Enums.TourCategory
-  price?: Prisma.FloatFilter<"GuideSpot"> | number
   durationDays?: Prisma.IntFilter<"GuideSpot"> | number
   maxGroupSize?: Prisma.IntFilter<"GuideSpot"> | number
   meetingPoint?: Prisma.StringFilter<"GuideSpot"> | string
@@ -357,7 +343,6 @@ export type GuideSpotOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   itinerary?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
   meetingPoint?: Prisma.SortOrder
@@ -383,7 +368,6 @@ export type GuideSpotScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"GuideSpot"> | string
   itinerary?: Prisma.StringWithAggregatesFilter<"GuideSpot"> | string
   category?: Prisma.EnumTourCategoryWithAggregatesFilter<"GuideSpot"> | $Enums.TourCategory
-  price?: Prisma.FloatWithAggregatesFilter<"GuideSpot"> | number
   durationDays?: Prisma.IntWithAggregatesFilter<"GuideSpot"> | number
   maxGroupSize?: Prisma.IntWithAggregatesFilter<"GuideSpot"> | number
   meetingPoint?: Prisma.StringWithAggregatesFilter<"GuideSpot"> | string
@@ -400,7 +384,6 @@ export type GuideSpotCreateInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -421,7 +404,6 @@ export type GuideSpotUncheckedCreateInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -440,7 +422,6 @@ export type GuideSpotUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -461,7 +442,6 @@ export type GuideSpotUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -481,7 +461,6 @@ export type GuideSpotCreateManyInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -498,7 +477,6 @@ export type GuideSpotUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -516,7 +494,6 @@ export type GuideSpotUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -547,7 +524,6 @@ export type GuideSpotCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   itinerary?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
   meetingPoint?: Prisma.SortOrder
@@ -559,7 +535,6 @@ export type GuideSpotCountOrderByAggregateInput = {
 }
 
 export type GuideSpotAvgOrderByAggregateInput = {
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
 }
@@ -571,7 +546,6 @@ export type GuideSpotMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   itinerary?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
   meetingPoint?: Prisma.SortOrder
@@ -588,7 +562,6 @@ export type GuideSpotMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   itinerary?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
   meetingPoint?: Prisma.SortOrder
@@ -599,7 +572,6 @@ export type GuideSpotMinOrderByAggregateInput = {
 }
 
 export type GuideSpotSumOrderByAggregateInput = {
-  price?: Prisma.SortOrder
   durationDays?: Prisma.SortOrder
   maxGroupSize?: Prisma.SortOrder
 }
@@ -722,7 +694,6 @@ export type GuideSpotCreateWithoutBookingsInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -742,7 +713,6 @@ export type GuideSpotUncheckedCreateWithoutBookingsInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -776,7 +746,6 @@ export type GuideSpotUpdateWithoutBookingsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -796,7 +765,6 @@ export type GuideSpotUncheckedUpdateWithoutBookingsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -814,7 +782,6 @@ export type GuideSpotCreateWithoutReviewsInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -834,7 +801,6 @@ export type GuideSpotUncheckedCreateWithoutReviewsInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -868,7 +834,6 @@ export type GuideSpotUpdateWithoutReviewsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -888,7 +853,6 @@ export type GuideSpotUncheckedUpdateWithoutReviewsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -906,7 +870,6 @@ export type GuideSpotCreateWithoutGuideInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -925,7 +888,6 @@ export type GuideSpotUncheckedCreateWithoutGuideInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -974,7 +936,6 @@ export type GuideSpotScalarWhereInput = {
   description?: Prisma.StringFilter<"GuideSpot"> | string
   itinerary?: Prisma.StringFilter<"GuideSpot"> | string
   category?: Prisma.EnumTourCategoryFilter<"GuideSpot"> | $Enums.TourCategory
-  price?: Prisma.FloatFilter<"GuideSpot"> | number
   durationDays?: Prisma.IntFilter<"GuideSpot"> | number
   maxGroupSize?: Prisma.IntFilter<"GuideSpot"> | number
   meetingPoint?: Prisma.StringFilter<"GuideSpot"> | string
@@ -991,7 +952,6 @@ export type GuideSpotCreateManyGuideInput = {
   description: string
   itinerary: string
   category: $Enums.TourCategory
-  price: number
   durationDays: number
   maxGroupSize: number
   meetingPoint: string
@@ -1008,7 +968,6 @@ export type GuideSpotUpdateWithoutGuideInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1027,7 +986,6 @@ export type GuideSpotUncheckedUpdateWithoutGuideInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1046,7 +1004,6 @@ export type GuideSpotUncheckedUpdateManyWithoutGuideInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   itinerary?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumTourCategoryFieldUpdateOperationsInput | $Enums.TourCategory
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
   durationDays?: Prisma.IntFieldUpdateOperationsInput | number
   maxGroupSize?: Prisma.IntFieldUpdateOperationsInput | number
   meetingPoint?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1104,7 +1061,6 @@ export type GuideSpotSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   description?: boolean
   itinerary?: boolean
   category?: boolean
-  price?: boolean
   durationDays?: boolean
   maxGroupSize?: boolean
   meetingPoint?: boolean
@@ -1126,7 +1082,6 @@ export type GuideSpotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   description?: boolean
   itinerary?: boolean
   category?: boolean
-  price?: boolean
   durationDays?: boolean
   maxGroupSize?: boolean
   meetingPoint?: boolean
@@ -1145,7 +1100,6 @@ export type GuideSpotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   description?: boolean
   itinerary?: boolean
   category?: boolean
-  price?: boolean
   durationDays?: boolean
   maxGroupSize?: boolean
   meetingPoint?: boolean
@@ -1164,7 +1118,6 @@ export type GuideSpotSelectScalar = {
   description?: boolean
   itinerary?: boolean
   category?: boolean
-  price?: boolean
   durationDays?: boolean
   maxGroupSize?: boolean
   meetingPoint?: boolean
@@ -1175,7 +1128,7 @@ export type GuideSpotSelectScalar = {
   updatedAt?: boolean
 }
 
-export type GuideSpotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "guideId" | "title" | "description" | "itinerary" | "category" | "price" | "durationDays" | "maxGroupSize" | "meetingPoint" | "city" | "images" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["guideSpot"]>
+export type GuideSpotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "guideId" | "title" | "description" | "itinerary" | "category" | "durationDays" | "maxGroupSize" | "meetingPoint" | "city" | "images" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["guideSpot"]>
 export type GuideSpotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | Prisma.GuideSpot$bookingsArgs<ExtArgs>
   reviews?: boolean | Prisma.GuideSpot$reviewsArgs<ExtArgs>
@@ -1203,7 +1156,6 @@ export type $GuideSpotPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     description: string
     itinerary: string
     category: $Enums.TourCategory
-    price: number
     durationDays: number
     maxGroupSize: number
     meetingPoint: string
@@ -1644,7 +1596,6 @@ export interface GuideSpotFieldRefs {
   readonly description: Prisma.FieldRef<"GuideSpot", 'String'>
   readonly itinerary: Prisma.FieldRef<"GuideSpot", 'String'>
   readonly category: Prisma.FieldRef<"GuideSpot", 'TourCategory'>
-  readonly price: Prisma.FieldRef<"GuideSpot", 'Float'>
   readonly durationDays: Prisma.FieldRef<"GuideSpot", 'Int'>
   readonly maxGroupSize: Prisma.FieldRef<"GuideSpot", 'Int'>
   readonly meetingPoint: Prisma.FieldRef<"GuideSpot", 'String'>
