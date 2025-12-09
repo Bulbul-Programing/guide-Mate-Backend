@@ -230,7 +230,6 @@ export type guideProfileWhereInput = {
   experienceYears?: Prisma.IntNullableFilter<"guideProfile"> | number | null
   guideSpots?: Prisma.GuideSpotListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.userWhereInput>
-  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type guideProfileOrderByWithRelationInput = {
@@ -242,7 +241,6 @@ export type guideProfileOrderByWithRelationInput = {
   experienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
   guideSpots?: Prisma.GuideSpotOrderByRelationAggregateInput
   user?: Prisma.userOrderByWithRelationInput
-  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type guideProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -257,7 +255,6 @@ export type guideProfileWhereUniqueInput = Prisma.AtLeast<{
   experienceYears?: Prisma.IntNullableFilter<"guideProfile"> | number | null
   guideSpots?: Prisma.GuideSpotListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.userWhereInput>
-  reviews?: Prisma.ReviewListRelationFilter
 }, "id" | "userId">
 
 export type guideProfileOrderByWithAggregationInput = {
@@ -294,7 +291,6 @@ export type guideProfileCreateInput = {
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
   user: Prisma.userCreateNestedOneWithoutGuideProfileInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUncheckedCreateInput = {
@@ -305,7 +301,6 @@ export type guideProfileUncheckedCreateInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUpdateInput = {
@@ -316,7 +311,6 @@ export type guideProfileUpdateInput = {
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
   user?: Prisma.userUpdateOneRequiredWithoutGuideProfileNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileUncheckedUpdateInput = {
@@ -327,7 +321,6 @@ export type guideProfileUncheckedUpdateInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileCreateManyInput = {
@@ -417,22 +410,6 @@ export type guideProfileUpdateOneRequiredWithoutGuideSpotsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.guideProfileUpdateToOneWithWhereWithoutGuideSpotsInput, Prisma.guideProfileUpdateWithoutGuideSpotsInput>, Prisma.guideProfileUncheckedUpdateWithoutGuideSpotsInput>
 }
 
-export type guideProfileCreateNestedOneWithoutReviewsInput = {
-  create?: Prisma.XOR<Prisma.guideProfileCreateWithoutReviewsInput, Prisma.guideProfileUncheckedCreateWithoutReviewsInput>
-  connectOrCreate?: Prisma.guideProfileCreateOrConnectWithoutReviewsInput
-  connect?: Prisma.guideProfileWhereUniqueInput
-}
-
-export type guideProfileUpdateOneWithoutReviewsNestedInput = {
-  create?: Prisma.XOR<Prisma.guideProfileCreateWithoutReviewsInput, Prisma.guideProfileUncheckedCreateWithoutReviewsInput>
-  connectOrCreate?: Prisma.guideProfileCreateOrConnectWithoutReviewsInput
-  upsert?: Prisma.guideProfileUpsertWithoutReviewsInput
-  disconnect?: Prisma.guideProfileWhereInput | boolean
-  delete?: Prisma.guideProfileWhereInput | boolean
-  connect?: Prisma.guideProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.guideProfileUpdateToOneWithWhereWithoutReviewsInput, Prisma.guideProfileUpdateWithoutReviewsInput>, Prisma.guideProfileUncheckedUpdateWithoutReviewsInput>
-}
-
 export type guideProfileCreateNestedOneWithoutUserInput = {
   create?: Prisma.XOR<Prisma.guideProfileCreateWithoutUserInput, Prisma.guideProfileUncheckedCreateWithoutUserInput>
   connectOrCreate?: Prisma.guideProfileCreateOrConnectWithoutUserInput
@@ -480,7 +457,6 @@ export type guideProfileCreateWithoutGuideSpotsInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   user: Prisma.userCreateNestedOneWithoutGuideProfileInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUncheckedCreateWithoutGuideSpotsInput = {
@@ -490,7 +466,6 @@ export type guideProfileUncheckedCreateWithoutGuideSpotsInput = {
   pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileCreateOrConnectWithoutGuideSpotsInput = {
@@ -516,7 +491,6 @@ export type guideProfileUpdateWithoutGuideSpotsInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user?: Prisma.userUpdateOneRequiredWithoutGuideProfileNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileUncheckedUpdateWithoutGuideSpotsInput = {
@@ -526,63 +500,6 @@ export type guideProfileUncheckedUpdateWithoutGuideSpotsInput = {
   pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideProfileNestedInput
-}
-
-export type guideProfileCreateWithoutReviewsInput = {
-  id?: string
-  location?: string | null
-  pricePerDay?: number | null
-  isAvailable?: boolean
-  experienceYears?: number | null
-  guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
-  user: Prisma.userCreateNestedOneWithoutGuideProfileInput
-}
-
-export type guideProfileUncheckedCreateWithoutReviewsInput = {
-  id?: string
-  userId: string
-  location?: string | null
-  pricePerDay?: number | null
-  isAvailable?: boolean
-  experienceYears?: number | null
-  guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
-}
-
-export type guideProfileCreateOrConnectWithoutReviewsInput = {
-  where: Prisma.guideProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.guideProfileCreateWithoutReviewsInput, Prisma.guideProfileUncheckedCreateWithoutReviewsInput>
-}
-
-export type guideProfileUpsertWithoutReviewsInput = {
-  update: Prisma.XOR<Prisma.guideProfileUpdateWithoutReviewsInput, Prisma.guideProfileUncheckedUpdateWithoutReviewsInput>
-  create: Prisma.XOR<Prisma.guideProfileCreateWithoutReviewsInput, Prisma.guideProfileUncheckedCreateWithoutReviewsInput>
-  where?: Prisma.guideProfileWhereInput
-}
-
-export type guideProfileUpdateToOneWithWhereWithoutReviewsInput = {
-  where?: Prisma.guideProfileWhereInput
-  data: Prisma.XOR<Prisma.guideProfileUpdateWithoutReviewsInput, Prisma.guideProfileUncheckedUpdateWithoutReviewsInput>
-}
-
-export type guideProfileUpdateWithoutReviewsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
-  user?: Prisma.userUpdateOneRequiredWithoutGuideProfileNestedInput
-}
-
-export type guideProfileUncheckedUpdateWithoutReviewsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
 }
 
 export type guideProfileCreateWithoutUserInput = {
@@ -592,7 +509,6 @@ export type guideProfileCreateWithoutUserInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUncheckedCreateWithoutUserInput = {
@@ -602,7 +518,6 @@ export type guideProfileUncheckedCreateWithoutUserInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileCreateOrConnectWithoutUserInput = {
@@ -628,7 +543,6 @@ export type guideProfileUpdateWithoutUserInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileUncheckedUpdateWithoutUserInput = {
@@ -638,7 +552,6 @@ export type guideProfileUncheckedUpdateWithoutUserInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideProfileNestedInput
 }
 
 
@@ -648,12 +561,10 @@ export type guideProfileUncheckedUpdateWithoutUserInput = {
 
 export type GuideProfileCountOutputType = {
   guideSpots: number
-  reviews: number
 }
 
 export type GuideProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guideSpots?: boolean | GuideProfileCountOutputTypeCountGuideSpotsArgs
-  reviews?: boolean | GuideProfileCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -673,13 +584,6 @@ export type GuideProfileCountOutputTypeCountGuideSpotsArgs<ExtArgs extends runti
   where?: Prisma.GuideSpotWhereInput
 }
 
-/**
- * GuideProfileCountOutputType without action
- */
-export type GuideProfileCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewWhereInput
-}
-
 
 export type guideProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -690,7 +594,6 @@ export type guideProfileSelect<ExtArgs extends runtime.Types.Extensions.Internal
   experienceYears?: boolean
   guideSpots?: boolean | Prisma.guideProfile$guideSpotsArgs<ExtArgs>
   user?: boolean | Prisma.userDefaultArgs<ExtArgs>
-  reviews?: boolean | Prisma.guideProfile$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.GuideProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guideProfile"]>
 
@@ -727,7 +630,6 @@ export type guideProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type guideProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guideSpots?: boolean | Prisma.guideProfile$guideSpotsArgs<ExtArgs>
   user?: boolean | Prisma.userDefaultArgs<ExtArgs>
-  reviews?: boolean | Prisma.guideProfile$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.GuideProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type guideProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -742,7 +644,6 @@ export type $guideProfilePayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     guideSpots: Prisma.$GuideSpotPayload<ExtArgs>[]
     user: Prisma.$userPayload<ExtArgs>
-    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1147,7 +1048,6 @@ export interface Prisma__guideProfileClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   guideSpots<T extends Prisma.guideProfile$guideSpotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.guideProfile$guideSpotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuideSpotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.userDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.userDefaultArgs<ExtArgs>>): Prisma.Prisma__userClient<runtime.Types.Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  reviews<T extends Prisma.guideProfile$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.guideProfile$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1600,30 +1500,6 @@ export type guideProfile$guideSpotsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.GuideSpotScalarFieldEnum | Prisma.GuideSpotScalarFieldEnum[]
-}
-
-/**
- * guideProfile.reviews
- */
-export type guideProfile$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Review
-   */
-  select?: Prisma.ReviewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Review
-   */
-  omit?: Prisma.ReviewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReviewInclude<ExtArgs> | null
-  where?: Prisma.ReviewWhereInput
-  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

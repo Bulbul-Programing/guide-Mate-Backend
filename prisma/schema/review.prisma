@@ -12,6 +12,4 @@ model Review {
   guideSpot      GuideSpot?    @relation(fields: [guideSpotId], references: [id])
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
-  guideProfile   guideProfile? @relation(fields: [guideProfileId], references: [id])
-  guideProfileId String?
 }

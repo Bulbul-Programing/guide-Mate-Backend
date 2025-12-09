@@ -2,6 +2,32 @@ import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { bookingService } from "./booking.service";
+import { TDecodedUser } from "../../types/UserRole";
+
+const getAllBooking = catchAsync(async (req: Request, res: Response) => {
+    const bookingQuery = req.query
+    const result = await bookingService.getAllBooking(bookingQuery)
+
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "All Booking Retrieve successfully!",
+        data: result
+    });
+});
+
+const getMyAllBooking = catchAsync(async (req: Request, res: Response) => {
+    const userInfo = req.user as TDecodedUser
+    const queryInfo = req.query
+    const result = await bookingService.getMyBooking(userInfo, queryInfo)
+
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "My All Booking Retrieve successfully!",
+        data: result
+    });
+});
 
 const createBooking = catchAsync(async (req: Request, res: Response) => {
     const bookingInfo = req.body
@@ -30,6 +56,8 @@ const updateBookingStatus = catchAsync(async (req: Request, res: Response) => {
 })
 
 export const bookingController = {
+    getAllBooking,
+    getMyAllBooking,
     createBooking,
     updateBookingStatus
 }

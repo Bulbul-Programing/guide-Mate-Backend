@@ -16,22 +16,9 @@ export const createBookingValidationSchema = z.object({
     path: ['endDate'],
 })
 
-export const updateBookingSchema = z
-    .object({
-        startDate: z.coerce.date().optional(),
-        endDate: z.coerce.date().optional(),
-        status: z.enum(["PENDING", "CONFIRMED", "COMPLETED", "CANCELLED"]).optional(),
-    })
-    .refine(
-        (data) =>
-            !data.startDate ||
-            !data.endDate ||
-            data.endDate > data.startDate,
-        {
-            message: 'endDate must be after startDate',
-            path: ['endDate'],
-        }
-    )
+export const updateBookingSchema = z.object({
+    status: z.enum(["PENDING", "CONFIRMED", "COMPLETED", "CANCELLED"])
+})
 
 export const bookingValidationSchema = {
     createBookingValidationSchema,

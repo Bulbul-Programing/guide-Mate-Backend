@@ -17,18 +17,7 @@ const handleCheckoutSuccess = async (
                 bookingId,
             },
             data: {
-                status: "PAID",
-                // Replace with correct field names from your Payment model
-                // stripeSessionId: session.id,
-                // stripePaymentIntentId: session.payment_intent as string,
-            },
-        });
-
-        // ✅ update booking
-        await tx.booking.update({
-            where: { id: bookingId },
-            data: {
-                status: "CONFIRMED",
+                status: "PAID"
             },
         });
     });

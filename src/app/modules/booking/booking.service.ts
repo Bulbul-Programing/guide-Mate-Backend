@@ -1,9 +1,14 @@
+import { userInfo } from "os";
+import QueryBuilder from "../../builder/QueryBuilder";
 import { prisma } from "../../config/db";
 import { envVars } from "../../envConfig";
 import AppError from "../../error/AppError";
 import { calculateDay } from "../../utils/calculateDay";
+import { IOptions, paginateCalculation } from "../../utils/paginateCalculation";
 import stripe from "../../utils/stripe";
+import { bookingSearchAbleField } from "./booking.const";
 import { TBooking } from "./Booking.interface";
+import { TDecodedUser } from "../../types/UserRole";
 
 type BookingStatus = "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELLED"
 const statusFlow: Record<BookingStatus, BookingStatus[]> = {
@@ -12,6 +17,77 @@ const statusFlow: Record<BookingStatus, BookingStatus[]> = {
     COMPLETED: [],
     CANCELLED: []
 }
+
+const getAllBooking = async (options: any) => {
+    const { limit, page, skip } = paginateCalculation(options)
+
+    console.log(limit, page, skip);
+
+    const result = await prisma.booking.findMany({
+        take: limit,
+        skip: skip
+    });
+    const total = await prisma.booking.count();
+
+    const resultWithMetaData = {
+        meta: {
+            page: Number(page),
+            limit: Number(limit),
+            totalPage: Math.ceil(total / Number(limit)),
+            total: total,
+            skip: Number(skip),
+        },
+        data: result
+    }
+    return resultWithMetaData
+
+}
+
+const getMyBooking = async (userInfo: TDecodedUser, options: any) => {
+    const { limit, page, skip } = paginateCalculation(options);
+
+    if (!userInfo?.userId) {
+        throw new AppError(401, 'Unauthorized');
+    }
+
+    let whereCondition;
+
+    if (userInfo.role === "TRAVELER") {
+        whereCondition = { touristId: userInfo.userId };
+    }
+    else if (userInfo.role === "GUIDE") {
+        whereCondition = { guideId: userInfo.userId };
+    }
+    else {
+        throw new AppError(403, "Invalid role");
+    }
+
+    const returnData = await prisma.$transaction(async (tnx) => {
+        const data = await tnx.booking.findMany({
+            where: whereCondition,
+            skip: Number(skip),
+            take: Number(limit),
+            orderBy: {
+                createdAt: "desc",
+            },
+        })
+        const total = await tnx.booking.count({
+            where: whereCondition
+        })
+        return { data, total }
+    })
+
+    return {
+        meta: {
+            page: Number(page),
+            limit: Number(limit),
+            totalPage: Math.ceil(returnData.total / Number(limit)),
+            total: returnData.total,
+            skip: Number(skip),
+        },
+        data: returnData.data,
+    };
+};
 
 const createBooking = async (bookingInfo: TBooking) => {
     const isExistGuideSpot = await prisma.guideSpot.findUniqueOrThrow({
@@ -97,14 +173,16 @@ const updateBookingStatus = async (bookingId: string, payload: Partial<TBooking>
     const isExistBooking = await prisma.booking.findUniqueOrThrow({
         where: { id: bookingId }
     })
-    const isExistGuide = await prisma.user.findUniqueOrThrow({
+
+    const isExistPayment = await prisma.payment.findUniqueOrThrow({
         where: {
-            id: isExistBooking.guideId
-        },
-        include: {
-            guideProfile: true
+            bookingId: bookingId
         }
     })
+
+    if (isExistPayment.status !== 'PAID') {
+        throw new AppError(500, 'Please contact your tourist for payment first. Without payment you can not update booking status!')
+    }
 
     let updatePayload: Partial<TBooking> = {}
     const nowBookingStatus = isExistBooking.status
@@ -116,52 +194,9 @@ const updateBookingStatus = async (bookingId: string, payload: Partial<TBooking>
         updatePayload.status = payload.status
     }
 
-    if (payload.startDate && payload.endDate) {
-        const start = new Date(payload.startDate)
-        const startTimeInMs = start.getTime()
-
-        const nowDate = new Date()
-        const nowDateInMs = nowDate.getTime()
-
-        if (startTimeInMs <= nowDateInMs) {
-            throw new AppError(400, 'Please select start time after to day!')
-        }
-
-        const totalDay = calculateDay(payload.startDate, payload.endDate)
-        payload.totalPrice = totalDay * isExistGuide.guideProfile?.pricePerDay!
-
-        updatePayload.startDate = payload.startDate
-        updatePayload.endDate = payload.endDate
-    }
-
-    const result = await prisma.$transaction(async (tnx) => {
-        const createBooking = await tnx.booking.update({
-            where: { id: bookingId },
-            data: payload
-        })
-
-        if (updatePayload.totalPrice) {
-            const paymentData = await tnx.payment.findUniqueOrThrow({
-                where: { bookingId: bookingId }
-            })
-
-
-
-        }
-
-        // Create transaction id for payment
-        const transactionId = `TX-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-        // const paymentPayload = {
-        //     bookingId: createBooking.id,
-        //     amount: bookingInfo.totalPrice,
-        //     transactionId
-        // }
-
-        // crete payment
-        // await tnx.payment.create({
-        //     data: paymentPayload
-        // })
-        return createBooking
+    const result = await prisma.booking.update({
+        where: { id: bookingId },
+        data: payload
     })
 
     return result
@@ -169,6 +204,8 @@ const updateBookingStatus = async (bookingId: string, payload: Partial<TBooking>
 }
 
 export const bookingService = {
+    getAllBooking,
+    getMyBooking,
     createBooking,
     updateBookingStatus
 }

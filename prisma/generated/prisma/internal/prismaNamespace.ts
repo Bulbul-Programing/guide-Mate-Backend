@@ -950,8 +950,7 @@ export const ReviewScalarFieldEnum = {
   guideSpotId: 'guideSpotId',
   travelerId: 'travelerId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  guideProfileId: 'guideProfileId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]

@@ -27,5 +27,4 @@ model guideProfile {
     experienceYears Int?        @default(0)
     guideSpots      GuideSpot[]
     user            user        @relation(fields: [userId], references: [id])
-    reviews         Review[]
 }

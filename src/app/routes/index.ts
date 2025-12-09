@@ -3,6 +3,7 @@ import { userRoutes } from '../modules/user/user.route';
 import { authRoutes } from '../modules/auth/auth.router';
 import { guideSpotRoutes } from '../modules/guideSpot/guideSpot.route';
 import { bookingRoutes } from '../modules/booking/booking.route';
+import { reviewRoutes } from '../modules/review/review.route';
 
 type TModuleRoutes = {
     path: string,
@@ -26,6 +27,10 @@ const moduleRoutes: TModuleRoutes[] = [
     {
         path: '/booking',
         route: bookingRoutes
+    },
+    {
+        path: '/review',
+        route: reviewRoutes
     },
 ]
 moduleRoutes.forEach(route => router.use(route.path, route.route))

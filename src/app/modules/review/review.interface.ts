@@ -1,8 +1,8 @@
 export type TReview = {
-    rating: number
-    comment?: string | null
-    bookingId: string
-    userId: string
-    createdAt: Date
-    updatedAt: Date
+  rating: number
+  comment?: string | null
+  bookingId: string
+  guideId: string
+  guideSpotId: string
+  travelerId: string
 }
