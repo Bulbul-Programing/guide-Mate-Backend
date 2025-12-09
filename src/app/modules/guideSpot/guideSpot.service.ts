@@ -57,6 +57,19 @@ const getAllGuideSpots = async (options: any) => {
     return resultWithMetaData
 }
 
+const getGuideDetails = async (guideId: string) => {
+    const isExistGuide = await prisma.guideSpot.findUnique({
+        where: {
+            id: guideId
+        },
+        include: {
+            reviews: true
+        }
+    })
+
+    return isExistGuide
+}
+
 const updateGuideSpot = async (guideSpotId: string, guideSpotData: Partial<TGuideSpot>) => {
     const isExistGuideSpot = await prisma.guideSpot.findUnique({
         where: { id: guideSpotId }
@@ -85,6 +98,7 @@ const deleteGuideSpot = async (guideSpotId: string) => {
 export const guideService = {
     creteGuideSpot,
     getAllGuideSpots,
+    getGuideDetails,
     updateGuideSpot,
     deleteGuideSpot
 }

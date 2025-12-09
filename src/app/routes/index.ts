@@ -1,6 +1,6 @@
 import express from 'express';
 import { userRoutes } from '../modules/user/user.route';
-import { authRoutes } from '../modules/auth/auth.router';
+import { authRoutes } from '../modules/auth/auth.route';
 import { guideSpotRoutes } from '../modules/guideSpot/guideSpot.route';
 import { bookingRoutes } from '../modules/booking/booking.route';
 import { reviewRoutes } from '../modules/review/review.route';

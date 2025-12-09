@@ -1,6 +1,7 @@
 export type TGuideSpot = {
     id: string
     guideId: string
+    userId: string
     title: string
     description: string
     itinerary: string
