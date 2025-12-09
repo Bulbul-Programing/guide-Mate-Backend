@@ -7,11 +7,18 @@ import cookieParser from 'cookie-parser'
 import router from './app/routes';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import { envVars } from './app/envConfig';
+import { PaymentController } from './app/modules/payment/pament.controller';
 // import { PaymentController } from './app/modules/payment/payment.controller';
 // import cron from 'node-cron';
 // import { AppointmentService } from './app/modules/appointment/appointment.service';
 
 const app: Application = express();
+
+app.post(
+    "/stripe-webhook",
+    express.raw({ type: "application/json" }),
+    PaymentController.stripeWebhook
+);
 
 // app.post(
 //     "/webhook",

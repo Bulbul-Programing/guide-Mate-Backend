@@ -6,9 +6,9 @@ import type { NextFunction, Request, Response } from 'express';
 import { handlePrismaClientError } from '../error/handlePrismaClientError';
 
 import type { TErrorSource } from '../types/error.type';
-import { Prisma } from '@prisma/client';
 import handleDuplicateError from '../error/handleDuplicateError';
 import { envVars } from '../envConfig';
+import { Prisma } from '../../../prisma/generated/prisma/client';
 
 const globalErrorHandler = (
   err: any,

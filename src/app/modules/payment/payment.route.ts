@@ -1,12 +1,12 @@
-import express from "express";
-import { PaymentController } from "./pament.controller";
+// import express from "express";
+// import { PaymentController } from "./pament.controller";
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post(
-    "/stripe-webhook",
-    express.raw({ type: "application/json" }),
-    PaymentController.stripeWebhook
-);
+// router.post(
+//     "/stripe-webhook",
+//     express.raw({ type: "application/json" }),
+//     PaymentController.stripeWebhook
+// );
 
-export const PaymentRoutes = router;
+// export const PaymentRoutes = router;
