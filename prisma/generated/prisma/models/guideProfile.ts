@@ -294,7 +294,7 @@ export type guideProfileCreateInput = {
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
   user: Prisma.userCreateNestedOneWithoutGuideProfileInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUncheckedCreateInput = {
@@ -305,7 +305,7 @@ export type guideProfileUncheckedCreateInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUpdateInput = {
@@ -316,7 +316,7 @@ export type guideProfileUpdateInput = {
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
   user?: Prisma.userUpdateOneRequiredWithoutGuideProfileNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutGuideNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileUncheckedUpdateInput = {
@@ -327,7 +327,7 @@ export type guideProfileUncheckedUpdateInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileCreateManyInput = {
@@ -423,10 +423,12 @@ export type guideProfileCreateNestedOneWithoutReviewsInput = {
   connect?: Prisma.guideProfileWhereUniqueInput
 }
 
-export type guideProfileUpdateOneRequiredWithoutReviewsNestedInput = {
+export type guideProfileUpdateOneWithoutReviewsNestedInput = {
   create?: Prisma.XOR<Prisma.guideProfileCreateWithoutReviewsInput, Prisma.guideProfileUncheckedCreateWithoutReviewsInput>
   connectOrCreate?: Prisma.guideProfileCreateOrConnectWithoutReviewsInput
   upsert?: Prisma.guideProfileUpsertWithoutReviewsInput
+  disconnect?: Prisma.guideProfileWhereInput | boolean
+  delete?: Prisma.guideProfileWhereInput | boolean
   connect?: Prisma.guideProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.guideProfileUpdateToOneWithWhereWithoutReviewsInput, Prisma.guideProfileUpdateWithoutReviewsInput>, Prisma.guideProfileUncheckedUpdateWithoutReviewsInput>
 }
@@ -478,7 +480,7 @@ export type guideProfileCreateWithoutGuideSpotsInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   user: Prisma.userCreateNestedOneWithoutGuideProfileInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUncheckedCreateWithoutGuideSpotsInput = {
@@ -488,7 +490,7 @@ export type guideProfileUncheckedCreateWithoutGuideSpotsInput = {
   pricePerDay?: number | null
   isAvailable?: boolean
   experienceYears?: number | null
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileCreateOrConnectWithoutGuideSpotsInput = {
@@ -514,7 +516,7 @@ export type guideProfileUpdateWithoutGuideSpotsInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user?: Prisma.userUpdateOneRequiredWithoutGuideProfileNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutGuideNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileUncheckedUpdateWithoutGuideSpotsInput = {
@@ -524,7 +526,7 @@ export type guideProfileUncheckedUpdateWithoutGuideSpotsInput = {
   pricePerDay?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileCreateWithoutReviewsInput = {
@@ -590,7 +592,7 @@ export type guideProfileCreateWithoutUserInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotCreateNestedManyWithoutGuideInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileUncheckedCreateWithoutUserInput = {
@@ -600,7 +602,7 @@ export type guideProfileUncheckedCreateWithoutUserInput = {
   isAvailable?: boolean
   experienceYears?: number | null
   guideSpots?: Prisma.GuideSpotUncheckedCreateNestedManyWithoutGuideInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGuideProfileInput
 }
 
 export type guideProfileCreateOrConnectWithoutUserInput = {
@@ -626,7 +628,7 @@ export type guideProfileUpdateWithoutUserInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUpdateManyWithoutGuideNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutGuideNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutGuideProfileNestedInput
 }
 
 export type guideProfileUncheckedUpdateWithoutUserInput = {
@@ -636,7 +638,7 @@ export type guideProfileUncheckedUpdateWithoutUserInput = {
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   guideSpots?: Prisma.GuideSpotUncheckedUpdateManyWithoutGuideNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGuideProfileNestedInput
 }
 
 

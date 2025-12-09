@@ -14,7 +14,8 @@ model user {
     updateAt        DateTime      @updatedAt
     guideBookings   Booking[]     @relation("GuideBookings")
     touristBookings Booking[]     @relation("TouristBookings")
-    reviews         Review[]
+    guideReview     Review[]      @relation("guideId")
+    travelerReview  Review[]      @relation("travelerId")
 }
 
 model guideProfile {
