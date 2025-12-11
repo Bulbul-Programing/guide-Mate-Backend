@@ -2,9 +2,10 @@ import { email } from "zod";
 import { prisma } from "../../config/db";
 import AppError from "../../error/AppError";
 import { generateToken } from "../../utils/generateToken";
-import { TLoginInfo } from "./auth.interface";
+import { ChangePasswordInput, TLoginInfo } from "./auth.interface";
 import bcrypt from 'bcrypt';
 import { envVars } from "../../envConfig";
+import { TDecodedUser } from "../../types/UserRole";
 
 const loginUser = async (payload: TLoginInfo) => {
     const isExistUser = await prisma.user.findUnique({
@@ -37,6 +38,51 @@ const loginUser = async (payload: TLoginInfo) => {
     }
 }
 
+const getMe = async (userInfo: TDecodedUser) => {
+    const isExistUser = await prisma.user.findUniqueOrThrow({
+        where: {
+            id: userInfo.userId
+        },
+        include: {
+            guideProfile: userInfo.role === 'GUIDE' && true
+        }
+    })
+
+    return isExistUser
+}
+
+export const changeUserPassword = async (userInfo: TDecodedUser, payload: ChangePasswordInput) => {
+    // 1. Find user
+    const user = await prisma.user.findUnique({
+        where: { id: userInfo.userId },
+    });
+
+    if (!user) {
+        throw new AppError(404, "User not found");
+    }
+
+    // 2. Verify old password
+    const isMatch = await bcrypt.compare(payload.oldPassword, user.password);
+
+    if (!isMatch) {
+        throw new AppError(400, "Current password is incorrect");
+    }
+
+    // 3. Hash new password
+    const hashedPassword = await bcrypt.hash(payload.newPassword, Number(envVars.BCRYPT_ROUNDS) || 10);
+
+    // 4. Update user password
+    const result = await prisma.user.update({
+        where: { id: userInfo.userId },
+        data: { password: hashedPassword },
+    });
+
+    result
+};
+
+
 export const authService = {
-    loginUser
+    loginUser,
+    getMe,
+    changeUserPassword
 }

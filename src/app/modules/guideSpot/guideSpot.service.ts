@@ -20,8 +20,6 @@ const creteGuideSpot = async (data: TGuideSpot) => {
         throw new AppError(400, 'Please complete your guide profile before creating a guide spot')
     }
 
-    console.log(isExistsGuide);
-
     const guideSpot = await prisma.guideSpot.create({
         data: data
     })

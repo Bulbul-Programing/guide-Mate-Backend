@@ -21,8 +21,6 @@ const statusFlow: Record<BookingStatus, BookingStatus[]> = {
 const getAllBooking = async (options: any) => {
     const { limit, page, skip } = paginateCalculation(options)
 
-    console.log(limit, page, skip);
-
     const result = await prisma.booking.findMany({
         take: limit,
         skip: skip

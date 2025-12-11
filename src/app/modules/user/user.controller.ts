@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { userService } from "./user.service";
+import { guideService } from "../guideSpot/guideSpot.service";
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
     const userInfo = req.body
@@ -15,29 +16,40 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
     })
 })
 
-const updateGuideProfile = catchAsync(async (req: Request, res: Response) => {
-    const userId = req.params.userId;
-    const guideProfileData = req.body;
-    const result = await userService.updateGuideProfile(userId, guideProfileData);
+const updateMyProfile = catchAsync(async (req, res) => {
+    const userId = req.user.userId;
+    const body = req.body;
 
-    sendResponse(res, {
+    // Split data
+    const userFields: Record<string, any> = {};
+    const guideFields: Record<string, any> = {};
+
+    const userAllowed = ["name", "phone", "bio", "profilePhoto", "language", "password"];
+    const guideAllowed = ["location", "pricePerDay", "isAvailable", "experienceYears"];
+
+    for (const key in body) {
+        if (userAllowed.includes(key)) userFields[key] = body[key];
+        if (guideAllowed.includes(key)) guideFields[key] = body[key];
+    }
+
+    let updatedUser = null;
+    let updatedGuide = null;
+
+    // Update user
+    if (Object.keys(userFields).length > 0) {
+        updatedUser = await userService.updateUser(userId, userFields);
+    }
+
+    // Update guide profile only if user is GUIDE
+    if (req.user.role === "GUIDE" && Object.keys(guideFields).length > 0) {
+        updatedGuide = await userService.updateGuideProfile(userId, guideFields);
+    }
+
+    return sendResponse(res, {
         statusCode: 200,
         success: true,
-        message: "Guide profile updated successfully!",
-        data: result
-    });
-});
-
-const updateUser = catchAsync(async (req: Request, res: Response) => {
-    const userId = req.params.userId;
-    const userData = req.body;
-    const result = await userService.updateUser(userId, userData);
-
-    sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "User updated successfully!",
-        data: result
+        message: "Profile updated successfully",
+        data: { updatedUser, updatedGuide },
     });
 });
 
@@ -79,8 +91,7 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
 
 export const userController = {
     createUser,
-    updateGuideProfile,
-    updateUser,
+    updateMyProfile,
     getAllUsers,
     getSingleUser,
     deleteUser

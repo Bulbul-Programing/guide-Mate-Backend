@@ -40,50 +40,35 @@ const createUser = async (userInfo: TUser) => {
     return userWithoutPassword;
 }
 
-const updateGuideProfile = async (userId: string, guideProfileData: TGuideProfile) => {
-    const existingProfile = await prisma.guideProfile.findUnique({
-        where: { userId }
-    });
-    if (!existingProfile) {
-        throw new AppError(404, 'Guide profile not found');
-    }
+const updateGuideProfile = async (userId: string, data: any) => {
+    const guide = await prisma.guideProfile.findUnique({ where: { userId } });
 
-    const updatedProfile = await prisma.guideProfile.update({
+    if (!guide) throw new AppError(404, "Guide profile not found");
+
+    return prisma.guideProfile.update({
         where: { userId },
-        data: guideProfileData
+        data,
     });
-    return updatedProfile;
-}
+};
 
-const updateUser = async (userId: string, userData: Partial<TUser>) => {
-    if (userData.email) {
-        throw new AppError(400, 'Email cannot be updated');
+
+const updateUser = async (userId: string, data: Partial<TUser>) => {
+    if (data.email) throw new AppError(400, "Email cannot be updated");
+    if (data.role) throw new AppError(400, "Role cannot be updated");
+
+    if (data.language) {
+        data.language = data.language.map((l: string) => l.trim());
     }
 
-    if (userData.role) {
-        throw new AppError(400, 'Role cannot be updated');
-    }
-
-    if (userData.password) {
-        const hashPassword = await bcrypt.hash(userData.password, Number(envVars.BCRYPT_ROUNDS));
-        userData.password = hashPassword;
-    }
-
-    const isExistUser = await prisma.user.findUnique({
-        where: {
-            id: userId
-        }
-    });
-    if (!isExistUser) {
-        throw new AppError(404, 'User not found');
-    }
-    const updatedUser = await prisma.user.update({
+    const user = await prisma.user.update({
         where: { id: userId },
-        data: userData
+        data,
     });
-    const { password, ...userWithoutPassword } = updatedUser;
-    return userWithoutPassword;
-}
+
+    const { password, ...rest } = user;
+    return rest;
+};
+
 
 const getAllUsers = async (query: any) => {
     const { page, limit, skip, sortBy, sortOrder } = paginateCalculation(query)
@@ -136,8 +121,8 @@ const deleteUser = async (userId: string) => {
 
 export const userService = {
     createUser,
-    updateGuideProfile,
     updateUser,
+    updateGuideProfile,
     getAllUsers,
     getSingleUser,
     deleteUser
