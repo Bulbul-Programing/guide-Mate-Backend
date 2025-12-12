@@ -49,12 +49,13 @@ const getMyBooking = async (userInfo: TDecodedUser, options: any) => {
     }
 
     let whereCondition;
+    let include
 
     if (userInfo.role === "TRAVELER") {
-        whereCondition = { touristId: userInfo.userId };
+        whereCondition = { touristId: userInfo.userId }
     }
     else if (userInfo.role === "GUIDE") {
-        whereCondition = { guideId: userInfo.userId };
+        whereCondition = { guideId: userInfo.userId }
     }
     else {
         throw new AppError(403, "Invalid role");
@@ -65,6 +66,27 @@ const getMyBooking = async (userInfo: TDecodedUser, options: any) => {
             where: whereCondition,
             skip: Number(skip),
             take: Number(limit),
+            include: {
+                tourist: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        phone: true,
+                    }
+                },
+                guide: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        phone: true,
+                    }
+                },
+                guideSpot: true,
+                payment: true,
+                review: true
+            },
             orderBy: {
                 createdAt: "desc",
             },

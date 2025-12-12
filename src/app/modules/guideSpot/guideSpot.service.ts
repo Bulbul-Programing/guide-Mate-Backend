@@ -1,3 +1,4 @@
+import { includes } from "zod"
 import QueryBuilder from "../../builder/QueryBuilder"
 import { prisma } from "../../config/db"
 import AppError from "../../error/AppError"
@@ -27,6 +28,7 @@ const creteGuideSpot = async (data: TGuideSpot) => {
 }
 
 const getAllGuideSpots = async (options: any) => {
+
     const { page, limit, skip, sortBy, sortOrder } = paginateCalculation(options)
 
     const guideQueryBuilder = new QueryBuilder(options)
@@ -37,7 +39,18 @@ const getAllGuideSpots = async (options: any) => {
         .fields()
         .paginate()
 
-    const result = await prisma.guideSpot.findMany(guideQueryBuilder.prismaQuery)
+    const result = await prisma.guideSpot.findMany(
+        {
+            ...guideQueryBuilder.prismaQuery,
+            include: {
+                guide: {
+                    include: {
+                        user: true
+                    }
+                }
+            }
+        }
+    )
     const total = await prisma.guideSpot.count({
         where: guideQueryBuilder.prismaQuery.where
     })
@@ -83,15 +96,49 @@ const updateGuideSpot = async (guideSpotId: string, guideSpotData: Partial<TGuid
 }
 
 const deleteGuideSpot = async (guideSpotId: string) => {
-    const deleteGuideSpot = await prisma.guideSpot.findUniqueOrThrow({
-        where: { id: guideSpotId }
-    })
-    await prisma.guideSpot.delete({
-        where: { id: guideSpotId }
-    })
+    // Check if GuideSpot exists
+    await prisma.guideSpot.findUniqueOrThrow({
+        where: { id: guideSpotId },
+    });
 
-    return deleteGuideSpot
-}
+    // Start a transaction
+    const result = await prisma.$transaction(async (tnx) => {
+        // Find all bookings for this GuideSpot
+        const bookings = await tnx.booking.findMany({
+            where: { guideSpotId },
+            include: { payment: true, review: true },
+        });
+
+        // Delete payments
+        await Promise.all(
+            bookings
+                .filter((b) => b.payment)
+                .map((b) => tnx.payment.delete({ where: { bookingId: b.id } }))
+        );
+
+        // Delete reviews
+        await Promise.all(
+            bookings
+                .filter((b) => b.review)
+                .map((b) => tnx.review.delete({ where: { bookingId: b.id } }))
+        );
+
+        // Delete bookings
+        await tnx.booking.deleteMany({
+            where: { guideSpotId },
+        });
+
+        // Delete GuideSpot
+        const deletedSpot = await tnx.guideSpot.delete({
+            where: { id: guideSpotId },
+        });
+
+        return deletedSpot;
+    });
+
+    return result;
+};
+
 
 export const guideService = {
     creteGuideSpot,
