@@ -65,10 +65,23 @@ const deleteGuideSpot = catchAsync(async (req: Request, res: Response) => {
     })
 })
 
+const getTopCity = catchAsync(async (req: Request, res: Response) => {
+    const guideSpotId = req.params.numberOfCity
+    const result = await guideService.getTopCity();
+
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "top city recreative successfully!",
+        data: result
+    })
+})
+
 export const guideController = {
     createGuide,
     getAllGuideSpots,
     getGuideSpotsDetails,
     updateGuide,
-    deleteGuideSpot
+    deleteGuideSpot,
+    getTopCity
 }

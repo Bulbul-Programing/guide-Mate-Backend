@@ -15,10 +15,7 @@ app.post(
     PaymentController.stripeWebhook
 );
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+app.use(cors({ origin: ["https://guide-mate-frontend.vercel.app", "http://localhost:3000"] }));
 
 //parser
 app.use(express.json());

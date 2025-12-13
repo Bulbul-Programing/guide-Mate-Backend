@@ -1,4 +1,4 @@
-import { includes } from "zod"
+import { includes, tuple } from "zod"
 import QueryBuilder from "../../builder/QueryBuilder"
 import { prisma } from "../../config/db"
 import AppError from "../../error/AppError"
@@ -74,7 +74,19 @@ const getGuideDetails = async (guideId: string) => {
             id: guideId
         },
         include: {
-            reviews: true
+            reviews: true,
+            guide: {
+                include: {
+                    user: {
+                        select: {
+                            name: true,
+                            email: true,
+                            phone: true,
+                            profilePhoto: true
+                        }
+                    }
+                }
+            }
         }
     })
 
@@ -139,11 +151,47 @@ const deleteGuideSpot = async (guideSpotId: string) => {
     return result;
 };
 
+export const getTopCity = async () => {
+    // Group by city and get count
+    const topCities = await prisma.guideSpot.groupBy({
+        by: ["city"],
+        _count: {
+            city: true,
+        },
+        orderBy: {
+            _count: {
+                city: "desc",
+            },
+        },
+        take: 6,
+    });
+
+    // Fetch first image for each city
+    const result = await Promise.all(
+        topCities.map(async (item) => {
+            const guideSpot = await prisma.guideSpot.findFirst({
+                where: { city: item.city },
+                select: { images: true },
+                orderBy: { createdAt: "desc" },
+            });
+
+            return {
+                city: item.city,
+                count: item._count.city,
+                photo: guideSpot?.images[0] || null, // first image or null
+            };
+        })
+    );
+
+    return result;
+};
+
 
 export const guideService = {
     creteGuideSpot,
     getAllGuideSpots,
     getGuideDetails,
     updateGuideSpot,
-    deleteGuideSpot
+    deleteGuideSpot,
+    getTopCity
 }
